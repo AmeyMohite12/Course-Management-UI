@@ -23,6 +23,12 @@
           >
             Email is a required field
           </small>
+          <small
+            *ngIf="loginForm.get('email').errors?.pattern"
+            class="text-danger"
+          >
+            {{ loginForm.get("email").value }} is not a valid email
+          </small>
         </div>
       </div>
       <div>
@@ -44,13 +50,30 @@
             *ngIf="loginForm.get('password').errors?.required"
             class="text-danger"
           >
-            Password is a required field
+            Password is a required field.
+          </small>
+          <small
+            *ngIf="loginForm.get('password').errors?.customValidator"
+            class="text-danger"
+          >
+            Password cannot have word password in it.
+          </small>
+          <small
+            *ngIf="loginForm.get('password').errors?.pattern"
+            class="text-danger"
+          >
+            Follow correct password format
           </small>
         </div>
       </div>
 
       <input type="submit" class="fadeIn fourth" value="Log In" />
-      <input type="button" class="fadeIn fourth" value="Load Api" />
+      <input
+        type="button"
+        class="fadeIn fourth"
+        value="Load Api"
+        (click)="loadApi()"
+      />
     </form>
 
     <div id="formFooter">
