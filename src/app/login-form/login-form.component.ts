@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { customValidator } from '../validators/customvalidator';
+import { GetRequestService } from '../services/get-request.service';
 
 import {
   FormBuilder,
@@ -18,7 +19,11 @@ import { Router } from '@angular/router';
 export class LoginFormComponent implements OnInit {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private getService: GetRequestService
+  ) {}
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -49,11 +54,17 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
+  /// hardcoded redirection
   login() {
     console.log('I am here');
     console.log(this.loginForm.value.email);
     if (this.loginForm.value.email === 'example.mail@domain.com') {
       this.router.navigate(['user']);
     }
+  }
+  /// serivce component redirection
+  loginService() {
+    console.log('In login comp');
+    this.getService.getRequest(this.loginForm.value.email);
   }
 }
