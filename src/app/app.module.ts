@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { UserComponent } from './user/user.component';
 import { GetRequestService } from './services/get-request.service';
+import { AuthguardService } from './services/authguard.service';
 
 @NgModule({
   declarations: [AppComponent, LoginFormComponent, UserComponent],
@@ -20,6 +21,7 @@ import { GetRequestService } from './services/get-request.service';
       {
         path: 'user',
         component: UserComponent,
+        canActivate: [AuthguardService],
       },
       {
         path: '**',

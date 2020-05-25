@@ -11,6 +11,7 @@ export class GetRequestService {
     if (mail === "example.mail@domain.com") {
       console.log("is equal");
       this.router.navigate(["user"]);
+      localStorage.setItem("key", "1");
     }
   }
 }
