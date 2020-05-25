@@ -1,0 +1,63 @@
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <div class="fadeIn first"></div>
+
+    <form [formGroup]="loginForm">
+      <div>
+        <input
+          type="text"
+          id="email"
+          class="fadeIn second"
+          name="email"
+          placeholder="email"
+          formControlName="email"
+        />
+        <div
+          [class.d-none]="
+            loginForm.get('email').valid || loginForm.get('email').untouched
+          "
+        >
+          <small
+            *ngIf="loginForm.get('email').errors?.required"
+            class="text-danger"
+          >
+            Email is a required field
+          </small>
+        </div>
+      </div>
+      <div>
+        <input
+          type="password"
+          id="password"
+          class="fadeIn third"
+          name="login"
+          placeholder="password"
+          formControlName="password"
+        />
+        <div
+          [class.d-none]="
+            loginForm.get('password').valid ||
+            loginForm.get('password').untouched
+          "
+        >
+          <small
+            *ngIf="loginForm.get('password').errors?.required"
+            class="text-danger"
+          >
+            Password is a required field
+          </small>
+        </div>
+      </div>
+
+      <input type="submit" class="fadeIn fourth" value="Log In" />
+      <input type="button" class="fadeIn fourth" value="Load Api" />
+    </form>
+
+    <div id="formFooter">
+      <div>
+        {{ loginForm.value | json }}
+      </div>
+      <a class="underlineHover" href="#">Forgot Password?</a>
+    </div>
+  </div>
+</div>
