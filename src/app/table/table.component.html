@@ -1,0 +1,52 @@
+<div class="jumbotron">
+  <div class="input-field-material">
+    <mat-form-field>
+      <input
+        matInput
+        (keyup)="applyfilter($event.target.value)"
+        placeholder="Search"
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="data-table-comp">
+    <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+      <!-- Position Column -->
+      <ng-container matColumnDef="completed">
+        <mat-header-cell mat-sort-header *matHeaderCellDef>
+          completed.
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.completed }} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="id">
+        <mat-header-cell mat-sort-header *matHeaderCellDef>
+          id
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          title
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.title }} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="userId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          userId
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.userId }} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons>
+    </mat-paginator>
+  </div>
+</div>
