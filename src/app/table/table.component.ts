@@ -44,15 +44,16 @@ export class TableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ["id", "username", "password"];
+  displayedColumns: string[] = ["creator", "description", "id"];
   dataSource = new MatTableDataSource();
   dataSource1 = new MatTableDataSource(ELEMENT_DATA);
 
   checkData: any;
 
   ngOnInit(): void {
-    this.getservice.getData("abc").subscribe((res) => {
+    this.getservice.getData().subscribe((res) => {
       this.checkData = res;
+      console.log(this.checkData);
       this.dataSource.data = this.checkData;
     });
   }

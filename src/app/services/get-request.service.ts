@@ -16,7 +16,7 @@ export class GetRequestService {
     }
   }
 
-  getData(url: string) {
-    return this.http.get("http://localhost:8080/person/get");
+  getData() {
+    return this.http.get("http://localhost:8080/course/get");
   }
 }

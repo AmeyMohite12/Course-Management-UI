@@ -1,4 +1,8 @@
 <table class="table table-hover">
+  <tr>
+    <td>Creator</td>
+    <td>Descirption</td>
+  </tr>
   <tr *ngFor="let course of courseservice.list">
     <td (click)="populateForm(course)">{{ course.creator }}</td>
     <td (click)="populateForm(course)">{{ course.description }}</td>

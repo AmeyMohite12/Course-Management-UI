@@ -20,19 +20,21 @@
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="username">
+      <ng-container matColumnDef="creator">
         <mat-header-cell mat-sort-header *matHeaderCellDef>
-          username
+          creator
         </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.username }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ element.creator }} </mat-cell>
       </ng-container>
 
       <!-- Weight Column -->
-      <ng-container matColumnDef="password">
+      <ng-container matColumnDef="description">
         <mat-header-cell *matHeaderCellDef mat-sort-header>
-          password
+          description
         </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.password }} </mat-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.description }}
+        </mat-cell>
       </ng-container>
 
       <!-- Symbol Column -->
