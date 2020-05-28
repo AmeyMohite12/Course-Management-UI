@@ -12,36 +12,30 @@
   <div class="data-table-comp">
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
       <!-- Position Column -->
-      <ng-container matColumnDef="completed">
-        <mat-header-cell mat-sort-header *matHeaderCellDef>
-          completed.
-        </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.completed }} </mat-cell>
-      </ng-container>
-
-      <!-- Name Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell mat-sort-header *matHeaderCellDef>
-          id
+          Id.
         </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
       </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          title
+      <!-- Name Column -->
+      <ng-container matColumnDef="username">
+        <mat-header-cell mat-sort-header *matHeaderCellDef>
+          username
         </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.title }} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{ element.username }} </mat-cell>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="password">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          password
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{ element.password }} </mat-cell>
       </ng-container>
 
       <!-- Symbol Column -->
-      <ng-container matColumnDef="userId">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
-          userId
-        </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.userId }} </mat-cell>
-      </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>

@@ -1,0 +1,44 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <input
+    type="hidden"
+    name="id"
+    [(ngModel)]="courseservice.formData.id"
+    class="form-control"
+    #id="ngModel"
+  />
+
+  <div class="form-group">
+    <label>Description</label>
+    <input
+      name="description"
+      [(ngModel)]="courseservice.formData.description"
+      class="form-control"
+      #description="ngModel"
+      required
+    />
+    <div
+      class="validation-error"
+      *ngIf="description.invalid && description.touched"
+    >
+      This field is required
+    </div>
+  </div>
+  <div class="form-group">
+    <label>Creator</label>
+    <input
+      name="creator"
+      [(ngModel)]="courseservice.formData.creator"
+      class="form-control"
+      #creator="ngModel"
+    />
+  </div>
+  <div>
+    <button
+      type="submit"
+      class="btn btn-lg btn-block"
+      [disabled]="form.invalid"
+    >
+      Submit
+    </button>
+  </div>
+</form>

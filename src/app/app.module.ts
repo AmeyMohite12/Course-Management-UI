@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -21,13 +22,19 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { HttpClient } from "@angular/common/http";
 import { HttpClientModule } from "@angular/common/http";
-
+import { CoursesComponent } from "./courses/courses.component";
+import { CourseComponent } from "./courses/course/course.component";
+import { CoursesListComponent } from "./courses/courses-list/courses-list.component";
+import { CourseService } from "./shared/course.service";
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
     UserComponent,
     TableComponent,
+    CoursesComponent,
+    CourseComponent,
+    CoursesListComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +44,11 @@ import { HttpClientModule } from "@angular/common/http";
       {
         path: "user",
         component: TableComponent,
+        canActivate: [AuthguardService],
+      },
+      {
+        path: "course",
+        component: CoursesComponent,
         canActivate: [AuthguardService],
       },
       {
@@ -51,8 +63,9 @@ import { HttpClientModule } from "@angular/common/http";
     MatFormFieldModule,
     MatInputModule,
     HttpClientModule,
+    FormsModule,
   ],
-  providers: [GetRequestService, HttpClient],
+  providers: [GetRequestService, HttpClient, CourseService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

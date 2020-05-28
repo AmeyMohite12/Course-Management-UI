@@ -8,6 +8,7 @@ import { HttpClient } from "@angular/common/http";
 import { DataSource } from "@angular/cdk/table";
 import { templateJitUrl } from "@angular/compiler";
 import { map } from "rxjs/operators";
+import { GetRequestService } from "../services/get-request.service";
 
 export interface PeriodicElement {
   name: string;
@@ -35,27 +36,25 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ["./table.component.css"],
 })
 export class TableComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private getservice: GetRequestService
+  ) {}
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ["completed", "id", "title", "userId"];
+  displayedColumns: string[] = ["id", "username", "password"];
   dataSource = new MatTableDataSource();
   dataSource1 = new MatTableDataSource(ELEMENT_DATA);
 
   checkData: any;
 
   ngOnInit(): void {
-    // TO DO: To be replaced by a service injection
-    this.http
-      .get("https://jsonplaceholder.typicode.com/todos/")
-      .subscribe((res) => {
-        console.log(res);
-        this.checkData = res;
-        this.dataSource.data = this.checkData;
-        console.log("current data = ", this.dataSource);
-      });
+    this.getservice.getData("abc").subscribe((res) => {
+      this.checkData = res;
+      this.dataSource.data = this.checkData;
+    });
   }
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
