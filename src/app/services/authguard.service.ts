@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { CanActivate, Router } from "@angular/router";
-
+import { GoogleLoginService } from "../shared/google-login.service";
 @Injectable({
   providedIn: "root",
 })
 export class AuthguardService implements CanActivate {
-  constructor() {}
+  constructor(private googleservice: GoogleLoginService) {}
   canActivate() {
-    if (localStorage.getItem("key") === "1") {
+    console.log(this.googleservice.loggedIn);
+    if (this.googleservice.loggedIn) {
       return true;
     }
     return false;

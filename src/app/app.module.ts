@@ -27,6 +27,23 @@ import { CoursesComponent } from "./courses/courses.component";
 import { CourseComponent } from "./courses/course/course.component";
 import { CoursesListComponent } from "./courses/courses-list/courses-list.component";
 import { CourseService } from "./shared/course.service";
+import { GoogleLoginService } from "./shared/google-login.service";
+
+import { GoogleLoginProvider, AuthService } from "angularx-social-login";
+import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+
+export function socialConfigs() {
+  const config = new AuthServiceConfig([
+    {
+      id: GoogleLoginProvider.PROVIDER_ID,
+      provider: new GoogleLoginProvider(
+        "872632589519-u6e1qqiikbri627o5v9nrbs5im8b9q1s.apps.googleusercontent.com"
+      ),
+    },
+  ]);
+  return config;
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +55,7 @@ import { CourseService } from "./shared/course.service";
     CoursesListComponent,
   ],
   imports: [
+    SocialLoginModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
@@ -67,7 +85,16 @@ import { CourseService } from "./shared/course.service";
     FormsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [GetRequestService, HttpClient, CourseService],
+  providers: [
+    GetRequestService,
+    HttpClient,
+    CourseService,
+    {
+      provide: AuthServiceConfig,
+      useFactory: socialConfigs,
+    },
+    GoogleLoginService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
