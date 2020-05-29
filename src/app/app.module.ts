@@ -14,6 +14,7 @@ import { AuthguardService } from "./services/authguard.service";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { TableComponent } from "./table/table.component";
 
+import { ToastrModule } from "ngx-toastr";
 import { MatTableModule } from "@angular/material/table";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatSortModule } from "@angular/material/sort";
@@ -64,6 +65,7 @@ import { CourseService } from "./shared/course.service";
     MatInputModule,
     HttpClientModule,
     FormsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [GetRequestService, HttpClient, CourseService],
   bootstrap: [AppComponent],
