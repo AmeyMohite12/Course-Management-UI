@@ -1,18 +1,22 @@
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
+import { GoogleLoginService } from "../shared/google-login.service";
 @Injectable({
   providedIn: "root",
 })
 export class GetRequestService {
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(
+    private router: Router,
+    private http: HttpClient,
+    private googlelogin: GoogleLoginService
+  ) {}
 
   getRequest(mail: any) {
     console.log("in service", mail);
     if (mail === "example.mail@domain.com") {
-      console.log("is equal");
+      this.googlelogin.loggedIn = true;
       this.router.navigate(["user"]);
-      localStorage.setItem("key", "1");
     }
   }
 

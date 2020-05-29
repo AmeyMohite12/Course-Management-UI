@@ -20,6 +20,7 @@ export class GoogleLoginService {
     this.authservice.signIn(GoogleLoginProvider.PROVIDER_ID).then((res) => {
       this.user = res;
       this.loggedIn = true;
+      this.router.navigate(["/course"]);
     });
   }
 

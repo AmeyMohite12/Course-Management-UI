@@ -5,12 +5,16 @@ import { GoogleLoginService } from "../shared/google-login.service";
   providedIn: "root",
 })
 export class AuthguardService implements CanActivate {
-  constructor(private googleservice: GoogleLoginService) {}
+  constructor(
+    private googleservice: GoogleLoginService,
+    private router: Router
+  ) {}
   canActivate() {
     console.log(this.googleservice.loggedIn);
     if (this.googleservice.loggedIn) {
       return true;
     }
+    this.router.navigate(["/NotFound"]);
     return false;
   }
 }

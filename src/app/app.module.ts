@@ -31,6 +31,7 @@ import { GoogleLoginService } from "./shared/google-login.service";
 
 import { GoogleLoginProvider, AuthService } from "angularx-social-login";
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
+import { NoAccessComponent } from "./no-access/no-access.component";
 
 export function socialConfigs() {
   const config = new AuthServiceConfig([
@@ -53,6 +54,7 @@ export function socialConfigs() {
     CoursesComponent,
     CourseComponent,
     CoursesListComponent,
+    NoAccessComponent,
   ],
   imports: [
     SocialLoginModule,
@@ -69,6 +71,10 @@ export function socialConfigs() {
         path: "course",
         component: CoursesComponent,
         canActivate: [AuthguardService],
+      },
+      {
+        path: "NotFound",
+        component: NoAccessComponent,
       },
       {
         path: "**",
