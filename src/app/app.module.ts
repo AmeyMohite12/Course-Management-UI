@@ -32,6 +32,11 @@ import { GoogleLoginService } from "./shared/google-login.service";
 import { GoogleLoginProvider, AuthService } from "angularx-social-login";
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { NoAccessComponent } from "./no-access/no-access.component";
+import { NavbarComponent } from "./navbar/navbar.component";
+
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
 
 export function socialConfigs() {
   const config = new AuthServiceConfig([
@@ -55,8 +60,12 @@ export function socialConfigs() {
     CourseComponent,
     CoursesListComponent,
     NoAccessComponent,
+    NavbarComponent,
   ],
   imports: [
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
     SocialLoginModule,
     BrowserModule,
     AppRoutingModule,
