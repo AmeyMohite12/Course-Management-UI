@@ -91,6 +91,54 @@
         #creator="ngModel"
       />
     </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input
+        name="description"
+        [(ngModel)]="courseservice.formData.description"
+        class="form-control"
+        #description="ngModel"
+        required
+      />
+      <div
+        class="validation-error"
+        *ngIf="description.invalid && description.touched"
+      >
+        This field is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Skill</label>
+      <input
+        name="skill"
+        [(ngModel)]="courseservice.formData.skill"
+        class="form-control"
+        #skill="ngModel"
+        required
+      />
+      <div class="validation-error" *ngIf="skill.invalid && skill.touched">
+        This field is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Pre-Requisite</label>
+      <input
+        name="prerequisite"
+        [(ngModel)]="courseservice.formData.prerequisite"
+        class="form-control"
+        #prerequisite="ngModel"
+        required
+      />
+      <div
+        class="validation-error"
+        *ngIf="prerequisite.invalid && prerequisite.touched"
+      >
+        This field is required
+      </div>
+    </div>
+
     <div>
       <button
         type="submit"

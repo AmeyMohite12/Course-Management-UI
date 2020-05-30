@@ -29,6 +29,8 @@ export class CourseService {
   }
 
   refreshList() {
+    console.log(this.formData.lastupdated);
+
     return this.http
       .get("http://localhost:8080/course/get")
       .toPromise()

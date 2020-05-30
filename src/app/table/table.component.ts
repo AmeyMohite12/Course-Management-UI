@@ -52,6 +52,9 @@ export class TableComponent implements OnInit {
       id: null,
       description: "",
       creator: "",
+      skill: "",
+      prerequisite: "",
+      lastupdated: null,
     };
   }
 

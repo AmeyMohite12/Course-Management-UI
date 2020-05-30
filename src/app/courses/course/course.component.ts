@@ -23,6 +23,9 @@ export class CourseComponent implements OnInit {
       id: null,
       description: "",
       creator: "",
+      skill: "",
+      prerequisite: "",
+      lastupdated: null,
     };
   }
 
