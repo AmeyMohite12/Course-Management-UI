@@ -3,8 +3,8 @@
     Au
   </div>
   <div class="navbar">
-    <a mat-button routerLink="course">Home</a>
-    <a mat-button routerLink="">Logout</a>
-    <a mat-button routerLink="course-table">Course</a>
+    <a mat-button routerLink="course">Course-View</a>
+    <a mat-button routerLink="course-table">Course-Table-View</a>
+    <a mat-button *ngIf="googlelogin.loggedIn" routerLink="">Logout</a>
   </div>
 </mat-toolbar>

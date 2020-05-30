@@ -67,12 +67,15 @@
         </div>
       </div>
 
-      <input
+      <button
         type="submit"
         class="fadeIn fourth"
         value="Log In"
-        (click)="loginService()"
-      />
+        [disabled]="!loginForm.valid"
+        (submit)="loginService()"
+      >
+        Login
+      </button>
       <input
         type="button"
         class="fadeIn fourth"

@@ -34,7 +34,15 @@ export class TableComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ["id", "creator", "description", "deleteRecord"];
+  displayedColumns: string[] = [
+    "id",
+    "creator",
+    "description",
+    "prerequisite",
+    "skill",
+    "lastupdated",
+    "deleteRecord",
+  ];
   dataSource = new MatTableDataSource();
   checkData: any;
 
