@@ -15,13 +15,21 @@ import { NgForm } from "@angular/forms";
 
 import { Course } from "src/app/shared/course.model";
 
+import { ToastrService } from "ngx-toastr";
+
 @Component({
   selector: "app-table",
   templateUrl: "./table.component.html",
   styleUrls: ["./table.component.css"],
 })
 export class TableComponent implements OnInit {
-  constructor(private http: HttpClient, public courseservice: CourseService) {}
+  constructor(
+    private http: HttpClient,
+
+    private toastr: ToastrService,
+
+    public courseservice: CourseService
+  ) {}
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -59,35 +67,44 @@ export class TableComponent implements OnInit {
   }
 
   deleteRecord(id: number) {
-    this.courseservice.deleteCourse(id).subscribe((res) => {
-      this.courseservice.refreshList();
-      this.courseservice.getCourses().subscribe((res) => {
-        this.checkData = res;
-        this.dataSource.data = this.checkData;
+    if (confirm("Are you sure you want to delete the existing record ")) {
+      this.courseservice.deleteCourse(id).subscribe((res) => {
+        this.courseservice.refreshList();
+        this.courseservice.getCourses().subscribe((res) => {
+          this.checkData = res;
+          this.dataSource.data = this.checkData;
+          this.toastr.warning("Deleted Successfully", "Course");
+        });
       });
-    });
+    }
   }
 
   updateRecord(form: NgForm) {
-    this.courseservice.updateCourse(form.value).subscribe((res) => {
-      this.resetForm(form);
-      this.courseservice.refreshList();
-      this.courseservice.getCourses().subscribe((res) => {
-        this.checkData = res;
-        this.dataSource.data = this.checkData;
+    if (confirm("Are you sure you want to delete the existing record ")) {
+      this.courseservice.updateCourse(form.value).subscribe((res) => {
+        this.resetForm(form);
+        this.courseservice.refreshList();
+        this.courseservice.getCourses().subscribe((res) => {
+          this.checkData = res;
+          this.dataSource.data = this.checkData;
+          this.toastr.info("Updated Successfully", "Course");
+        });
       });
-    });
+    }
   }
   insertRecord(form: NgForm) {
     console.log(form.value);
-    this.courseservice.postCourse(form.value).subscribe((res) => {
-      this.resetForm(form);
-      this.courseservice.refreshList();
-      this.courseservice.getCourses().subscribe((res) => {
-        this.checkData = res;
-        this.dataSource.data = this.checkData;
+    if (confirm("Are you sure you want to delete the existing record ")) {
+      this.courseservice.postCourse(form.value).subscribe((res) => {
+        this.resetForm(form);
+        this.courseservice.refreshList();
+        this.courseservice.getCourses().subscribe((res) => {
+          this.checkData = res;
+          this.dataSource.data = this.checkData;
+          this.toastr.success("Inserted Successfully", "Course");
+        });
       });
-    });
+    }
   }
 
   onSubmit(form: NgForm) {

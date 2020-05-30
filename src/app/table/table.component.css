@@ -13,3 +13,7 @@
   width: 20%;
   margin-left: 150px;
 }
+
+.mat-form-field-empty.mat-form-field-label {
+  color: green;
+}
