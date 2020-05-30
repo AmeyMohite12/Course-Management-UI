@@ -13,6 +13,9 @@ export class CourseService {
   postCourse(formData: Course) {
     return this.http.post("http://localhost:8080/course/post", formData);
   }
+  getCourses() {
+    return this.http.get("http://localhost:8080/course/get");
+  }
 
   updateCourse(formData: Course) {
     return this.http.put(

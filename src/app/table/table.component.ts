@@ -8,27 +8,12 @@ import { HttpClient } from "@angular/common/http";
 import { DataSource } from "@angular/cdk/table";
 import { templateJitUrl } from "@angular/compiler";
 import { map } from "rxjs/operators";
-import { GetRequestService } from "../services/get-request.service";
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-}
+import { TemplateRef } from "@angular/core";
+import { CourseService } from "../shared/course.service";
+import { NgForm } from "@angular/forms";
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  { position: 1, name: "Hydrogen", weight: 1.0079, symbol: "H" },
-  { position: 2, name: "Helium", weight: 4.0026, symbol: "He" },
-  { position: 3, name: "Lithium", weight: 6.941, symbol: "Li" },
-  { position: 4, name: "Beryllium", weight: 9.0122, symbol: "Be" },
-  { position: 5, name: "Boron", weight: 10.811, symbol: "B" },
-  { position: 6, name: "Carbon", weight: 12.0107, symbol: "C" },
-  { position: 7, name: "Nitrogen", weight: 14.0067, symbol: "N" },
-  { position: 8, name: "Oxygen", weight: 15.9994, symbol: "O" },
-  { position: 9, name: "Fluorine", weight: 18.9984, symbol: "F" },
-  { position: 10, name: "Neon", weight: 20.1797, symbol: "Ne" },
-];
+import { Course } from "src/app/shared/course.model";
 
 @Component({
   selector: "app-table",
@@ -36,37 +21,86 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ["./table.component.css"],
 })
 export class TableComponent implements OnInit {
-  constructor(
-    private http: HttpClient,
-    private getservice: GetRequestService
-  ) {}
+  constructor(private http: HttpClient, public courseservice: CourseService) {}
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  displayedColumns: string[] = ["creator", "description", "id"];
+  displayedColumns: string[] = ["id", "creator", "description", "deleteRecord"];
   dataSource = new MatTableDataSource();
-  dataSource1 = new MatTableDataSource(ELEMENT_DATA);
-
   checkData: any;
 
   ngOnInit(): void {
-    this.getservice.getData().subscribe((res) => {
+    this.courseservice.getCourses().subscribe((res) => {
       this.checkData = res;
-      console.log(this.checkData);
       this.dataSource.data = this.checkData;
     });
+    this.resetForm();
   }
+
+  resetForm(form?: NgForm) {
+    if (form != null) form.resetForm();
+    this.courseservice.formData = {
+      id: null,
+      description: "",
+      creator: "",
+    };
+  }
+
   ngAfterViewInit() {
+    console.log(this.dataSource.data, "In after");
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
+
   applyfilter(filterValue: string) {
     console.log("in here");
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
-  clickme() {
-    console.log(this.dataSource1);
+  deleteRecord(id: number) {
+    this.courseservice.deleteCourse(id).subscribe((res) => {
+      this.courseservice.refreshList();
+      this.courseservice.getCourses().subscribe((res) => {
+        this.checkData = res;
+        this.dataSource.data = this.checkData;
+      });
+    });
+  }
+
+  updateRecord(form: NgForm) {
+    this.courseservice.updateCourse(form.value).subscribe((res) => {
+      this.resetForm(form);
+      this.courseservice.refreshList();
+      this.courseservice.getCourses().subscribe((res) => {
+        this.checkData = res;
+        this.dataSource.data = this.checkData;
+      });
+    });
+  }
+  insertRecord(form: NgForm) {
+    console.log(form.value);
+    this.courseservice.postCourse(form.value).subscribe((res) => {
+      this.resetForm(form);
+      this.courseservice.refreshList();
+      this.courseservice.getCourses().subscribe((res) => {
+        this.checkData = res;
+        this.dataSource.data = this.checkData;
+      });
+    });
+  }
+
+  onSubmit(form: NgForm) {
+    if (form.value.id == null) {
+      this.insertRecord(form);
+    } else {
+      console.log("In update", form.value.id);
+      this.updateRecord(form);
+    }
+  }
+
+  populateForm(course: Course) {
+    console.log(course);
+    this.courseservice.formData = Object.assign({}, course);
   }
 }

@@ -82,6 +82,11 @@ export function socialConfigs() {
         canActivate: [AuthguardService],
       },
       {
+        path: "course-table",
+        component: TableComponent,
+        canActivate: [AuthguardService],
+      },
+      {
         path: "NotFound",
         component: NoAccessComponent,
       },

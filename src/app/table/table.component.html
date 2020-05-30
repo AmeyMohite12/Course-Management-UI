@@ -14,9 +14,11 @@
       <!-- Position Column -->
       <ng-container matColumnDef="id">
         <mat-header-cell mat-sort-header *matHeaderCellDef>
-          Id.
+          id.
         </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
+        <mat-cell *matCellDef="let element">
+          {{ element.id }}
+        </mat-cell>
       </ng-container>
 
       <!-- Name Column -->
@@ -37,7 +39,16 @@
         </mat-cell>
       </ng-container>
 
-      <!-- Symbol Column -->
+      <ng-container matColumnDef="deleteRecord">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          deleteRecord
+        </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <mat-icon (click)="deleteRecord(element.id)">delete </mat-icon>
+
+          <mat-icon (click)="populateForm(element)">eco </mat-icon>
+        </mat-cell>
+      </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
@@ -45,4 +56,49 @@
     <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons>
     </mat-paginator>
   </div>
+
+  <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <input
+      type="hidden"
+      name="id"
+      [(ngModel)]="courseservice.formData.id"
+      class="form-control"
+      #id="ngModel"
+    />
+
+    <div class="form-group">
+      <label>Description</label>
+      <input
+        name="description"
+        [(ngModel)]="courseservice.formData.description"
+        class="form-control"
+        #description="ngModel"
+        required
+      />
+      <div
+        class="validation-error"
+        *ngIf="description.invalid && description.touched"
+      >
+        This field is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Creator</label>
+      <input
+        name="creator"
+        [(ngModel)]="courseservice.formData.creator"
+        class="form-control"
+        #creator="ngModel"
+      />
+    </div>
+    <div>
+      <button
+        type="submit"
+        class="btn btn-lg btn-block"
+        [disabled]="form.invalid"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
 </div>
