@@ -9,4 +9,7 @@ import { GoogleLoginService } from "../shared/google-login.service";
 export class NavbarComponent implements OnInit {
   constructor(public googlelogin: GoogleLoginService) {}
   ngOnInit(): void {}
+  logout() {
+    this.googlelogin.logout();
+  }
 }

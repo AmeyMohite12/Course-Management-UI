@@ -7,19 +7,10 @@
     <td>Last Updated</td>
   </tr>
   <tr *ngFor="let course of courseservice.list">
-    <td (click)="populateForm(course)">{{ course.creator }}</td>
-    <td (click)="populateForm(course)">{{ course.description }}</td>
-    <td (click)="populateForm(course)">{{ course.prerequisite }}</td>
-    <td (click)="populateForm(course)">{{ course.skill }}</td>
-    <td>{{ course.lastupdated }}</td>
-
-    <td>
-      <button
-        (click)="deleteRecord(course.id)"
-        class="btn btn-sm btn-outline-danger"
-      >
-        X
-      </button>
-    </td>
+    <td>{{ course.creator }}</td>
+    <td>{{ course.description }}</td>
+    <td>{{ course.prerequisite }}</td>
+    <td>{{ course.skill }}</td>
+    <td>{{ course.lastupdated | date: "medium" }}</td>
   </tr>
 </table>

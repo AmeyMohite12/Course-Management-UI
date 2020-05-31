@@ -37,7 +37,7 @@ export class LoginFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      email: [
+      username: [
         "",
         [
           Validators.required,
@@ -59,23 +59,14 @@ export class LoginFormComponent implements OnInit {
 
   loadApi() {
     this.loginForm.patchValue({
-      email: "example.mail@domain.com",
+      username: "example.mail@domain.com",
       password: "Examplepass@123",
     });
   }
 
-  /// hardcoded redirection
-  login() {
-    console.log("I am here");
-    console.log(this.loginForm.value.email);
-    if (this.loginForm.value.email === "example.mail@domain.com") {
-      this.router.navigate(["user"]);
-    }
-  }
-  /// serivce component redirection
-  loginService() {
-    console.log("In login comp");
-    this.getService.getRequest(this.loginForm.value.email);
+  loginService(form: any) {
+    //console.log(form);
+    this.getService.checkEmail(form);
   }
 
   googleLogin() {

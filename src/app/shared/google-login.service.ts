@@ -24,6 +24,12 @@ export class GoogleLoginService {
     });
   }
 
+  logout() {
+    console.log("in logout");
+    this.loggedIn = false;
+    this.router.navigate([""]);
+  }
+
   signOut(): void {
     this.authservice.signOut().then((res) => {
       this.user = null;

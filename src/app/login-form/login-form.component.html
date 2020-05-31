@@ -6,28 +6,30 @@
       <div>
         <input
           type="text"
-          id="email"
+          id="username"
           class="fadeIn second"
-          name="email"
-          placeholder="email"
-          formControlName="email"
+          name="username"
+          placeholder="username"
+          formControlName="username"
+          autocomplete="off"
         />
         <div
           [class.d-none]="
-            loginForm.get('email').valid || loginForm.get('email').untouched
+            loginForm.get('username').valid ||
+            loginForm.get('username').untouched
           "
         >
           <small
-            *ngIf="loginForm.get('email').errors?.required"
+            *ngIf="loginForm.get('username').errors?.required"
             class="text-danger"
           >
             Email is a required field
           </small>
           <small
-            *ngIf="loginForm.get('email').errors?.pattern"
+            *ngIf="loginForm.get('username').errors?.pattern"
             class="text-danger"
           >
-            {{ loginForm.get("email").value }} is not a valid email
+            {{ loginForm.get("username").value }} is not a valid email
           </small>
         </div>
       </div>
@@ -72,7 +74,7 @@
         class="fadeIn fourth"
         value="Log In"
         [disabled]="!loginForm.valid"
-        (submit)="loginService()"
+        (click)="loginService(loginForm.value)"
       >
         Login
       </button>

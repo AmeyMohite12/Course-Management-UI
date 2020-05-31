@@ -73,7 +73,6 @@ export class TableComponent implements OnInit {
   }
 
   applyfilter(filterValue: string) {
-    console.log("in here");
     this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
@@ -91,7 +90,7 @@ export class TableComponent implements OnInit {
   }
 
   updateRecord(form: NgForm) {
-    if (confirm("Are you sure you want to delete the existing record ")) {
+    if (confirm("Are you sure you want to update the existing record ")) {
       this.courseservice.updateCourse(form.value).subscribe((res) => {
         this.resetForm(form);
         this.courseservice.refreshList();
@@ -105,7 +104,7 @@ export class TableComponent implements OnInit {
   }
   insertRecord(form: NgForm) {
     console.log(form.value);
-    if (confirm("Are you sure you want to delete the existing record ")) {
+    if (confirm("Are you sure you want to insert the record ")) {
       this.courseservice.postCourse(form.value).subscribe((res) => {
         this.resetForm(form);
         this.courseservice.refreshList();
@@ -129,6 +128,8 @@ export class TableComponent implements OnInit {
 
   populateForm(course: Course) {
     console.log(course);
+
+    alert("Form has been populated with fields do required changes and submit");
     this.courseservice.formData = Object.assign({}, course);
   }
 }
