@@ -1,0 +1,52 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Last Updated</th>
+      <th>Assignment</th>
+      <th>Created/Updated By</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let material of materialservice.listMaterial">
+    <td (click)="getVersion(material.id)">
+      {{ material.id }}
+    </td>
+    <td>{{ material.lastupdated | date: "medium" }}</td>
+    <td>{{ material.name }}</td>
+    <td>{{ material.creator }}</td>
+  </tr>
+</table>
+
+<!-- <input name="id" class="form-control" placeholder="enter id of material" #id /> -->
+<!-- <button class="btn btn-sm btn-outline-danger" (click)="click(id.value)">
+  Search
+</button> -->
+
+<!-- <table class="table table-hover">
+  <tr *ngFor="let m of materialservice.currentList">
+    <td>{{ m.id }}</td>
+    <td>{{ m.lastupdated }}</td>
+    <td>{{ m.name }}</td>
+    <td>{{ m.material }}</td>
+    <td>{{ m.creator }}</td>
+  </tr>
+</table> -->
+
+<table class="table table-hover" id="dev-table" *ngIf="flg">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Last Updated</th>
+      <th>Version_History</th>
+      <th>Created/Updated By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of materialservice.currentList">
+      <td>{{ m.id }}</td>
+      <td>{{ m.lastupdated | date: "medium" }}</td>
+      <td>{{ m.name }}</td>
+      <td>{{ m.creator }}</td>
+    </tr>
+  </tbody>
+</table>

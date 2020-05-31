@@ -8,8 +8,9 @@
       >Add Course</a
     >
     <a mat-button *ngIf="googlelogin.loggedIn" routerLink="course-table"
-      >Update Course</a
+      >UpdateCourse</a
     >
+    <a mat-button *ngIf="googlelogin.loggedIn" routerLink="Material">Version</a>
     <a mat-button *ngIf="googlelogin.loggedIn" (click)="logout()">Logout</a>
   </div>
 </mat-toolbar>

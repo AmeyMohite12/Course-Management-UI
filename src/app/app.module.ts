@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, Component } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -29,6 +29,8 @@ import { CoursesListComponent } from "./courses/courses-list/courses-list.compon
 import { CourseService } from "./shared/course.service";
 import { GoogleLoginService } from "./shared/google-login.service";
 
+import { MaterialService } from "./shared/material.service";
+
 import { GoogleLoginProvider, AuthService } from "angularx-social-login";
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { NoAccessComponent } from "./no-access/no-access.component";
@@ -37,6 +39,7 @@ import { NavbarComponent } from "./navbar/navbar.component";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+import { MaterialListComponent } from "./material-list/material-list.component";
 
 export function socialConfigs() {
   const config = new AuthServiceConfig([
@@ -61,6 +64,7 @@ export function socialConfigs() {
     CoursesListComponent,
     NoAccessComponent,
     NavbarComponent,
+    MaterialListComponent,
   ],
   imports: [
     MatToolbarModule,
@@ -91,6 +95,10 @@ export function socialConfigs() {
         component: NoAccessComponent,
       },
       {
+        path: "Material",
+        component: MaterialListComponent,
+      },
+      {
         path: "**",
         component: LoginFormComponent,
       },
@@ -109,6 +117,7 @@ export function socialConfigs() {
     GetRequestService,
     HttpClient,
     CourseService,
+    MaterialService,
     {
       provide: AuthServiceConfig,
       useFactory: socialConfigs,
