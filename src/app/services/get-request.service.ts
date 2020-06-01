@@ -31,6 +31,7 @@ export class GetRequestService {
           if (this.data.password == form.password) {
             console.log("it is correct");
             this.googlelogin.loggedIn = true;
+            this.googlelogin.currentUser = this.data.username;
             this.router.navigate(["user"]);
           } else {
             console.log("i am here");

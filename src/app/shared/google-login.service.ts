@@ -13,6 +13,7 @@ import { Router } from "@angular/router";
 export class GoogleLoginService {
   user: SocialUser;
   loggedIn: boolean;
+  currentUser: string;
 
   constructor(private authservice: AuthService, private router: Router) {}
 
@@ -20,6 +21,7 @@ export class GoogleLoginService {
     this.authservice.signIn(GoogleLoginProvider.PROVIDER_ID).then((res) => {
       this.user = res;
       this.loggedIn = true;
+      this.currentUser = this.user.email;
       this.router.navigate(["/course"]);
     });
   }

@@ -40,6 +40,10 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MaterialListComponent } from "./material-list/material-list.component";
+import { MaterialFormComponent } from "./material-form/material-form.component";
+
+import { MatDialogModule } from "@angular/material/dialog";
+import { MaterialForm } from "./shared/material.model";
 
 export function socialConfigs() {
   const config = new AuthServiceConfig([
@@ -65,6 +69,7 @@ export function socialConfigs() {
     NoAccessComponent,
     NavbarComponent,
     MaterialListComponent,
+    MaterialFormComponent,
   ],
   imports: [
     MatToolbarModule,
@@ -96,7 +101,8 @@ export function socialConfigs() {
       },
       {
         path: "Material",
-        component: MaterialListComponent,
+        component: MaterialListComponent, /// MaterialLitComponente , MaterialFormComponent
+        canActivate: [AuthguardService],
       },
       {
         path: "**",
@@ -112,6 +118,7 @@ export function socialConfigs() {
     HttpClientModule,
     FormsModule,
     ToastrModule.forRoot(),
+    MatDialogModule,
   ],
   providers: [
     GetRequestService,
@@ -125,5 +132,6 @@ export function socialConfigs() {
     GoogleLoginService,
   ],
   bootstrap: [AppComponent],
+  entryComponents: [MaterialFormComponent],
 })
 export class AppModule {}
