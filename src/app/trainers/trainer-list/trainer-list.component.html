@@ -1,0 +1,25 @@
+<table class="table table-striped table-bordered table-hover">
+  <tr>
+    <td>Id</td>
+    <td>Name</td>
+    <td>Age</td>
+    <td>Gender</td>
+    <td>Type</td>
+    <td>Actions</td>
+  </tr>
+  <tr *ngFor="let trainer of trainerservice.list">
+    <td>{{ trainer.id }}</td>
+    <td>{{ trainer.name }}</td>
+    <td>{{ trainer.age }}</td>
+    <td>{{ trainer.gender }}</td>
+    <td>{{ trainer.type }}</td>
+    <td>
+      <button mat-icon-button (click)="populateForm(trainer)">
+        <mat-icon>launch</mat-icon>
+      </button>
+      <button mat-icon-button (click)="deleteRecord(trainer.id)">
+        <mat-icon>delete_outline</mat-icon>
+      </button>
+    </td>
+  </tr>
+</table>

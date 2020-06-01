@@ -1,4 +1,3 @@
-/* Structure */
 #formContainer {
   border-top: 2px solid #aaa;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
@@ -156,4 +155,9 @@ fieldset {
 
 :-ms-input-placeholder {
   color: #888;
+}
+
+.myinputfield {
+  margin-left: 40px;
+  margin-top: 35px;
 }

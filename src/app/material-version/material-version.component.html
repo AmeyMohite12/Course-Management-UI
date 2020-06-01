@@ -1,0 +1,18 @@
+<table class="table table-striped table-bordered table-hover" id="dev-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Last Updated</th>
+      <th>Version_History</th>
+      <th>Created/Updated By</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let m of materialservice.currentList">
+      <td>{{ m.id }}</td>
+      <td>{{ m.lastupdated | date: "medium" }}</td>
+      <td>{{ m.name }}</td>
+      <td>{{ m.creator }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -44,6 +44,11 @@ import { MaterialFormComponent } from "./material-form/material-form.component";
 
 import { MatDialogModule } from "@angular/material/dialog";
 import { MaterialForm } from "./shared/material.model";
+import { MaterialVersionComponent } from "./material-version/material-version.component";
+import { TrainersComponent } from "./trainers/trainers.component";
+import { TrainerComponent } from "./trainers/trainer/trainer.component";
+import { TrainerListComponent } from "./trainers/trainer-list/trainer-list.component";
+import { TrainerService } from "./shared/trainer.service";
 
 export function socialConfigs() {
   const config = new AuthServiceConfig([
@@ -70,6 +75,10 @@ export function socialConfigs() {
     NavbarComponent,
     MaterialListComponent,
     MaterialFormComponent,
+    MaterialVersionComponent,
+    TrainersComponent,
+    TrainerComponent,
+    TrainerListComponent,
   ],
   imports: [
     MatToolbarModule,
@@ -86,10 +95,11 @@ export function socialConfigs() {
         canActivate: [AuthguardService],
       },
       {
-        path: "course",
-        component: CoursesComponent,
+        path: "trainer",
+        component: TrainersComponent,
         canActivate: [AuthguardService],
       },
+
       {
         path: "course-table",
         component: TableComponent,
@@ -124,6 +134,7 @@ export function socialConfigs() {
     GetRequestService,
     HttpClient,
     CourseService,
+    TrainerService,
     MaterialService,
     {
       provide: AuthServiceConfig,
@@ -132,6 +143,6 @@ export function socialConfigs() {
     GoogleLoginService,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [MaterialFormComponent],
+  entryComponents: [MaterialFormComponent, MaterialVersionComponent],
 })
 export class AppModule {}

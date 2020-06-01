@@ -4,11 +4,9 @@
   </div>
   <div class="navbar">
     <a mat-button routerLink="">Home</a>
-    <a mat-button *ngIf="googlelogin.loggedIn" routerLink="course"
-      >Add Course</a
-    >
+    <a mat-button *ngIf="googlelogin.loggedIn" routerLink="trainer">Trainer</a>
     <a mat-button *ngIf="googlelogin.loggedIn" routerLink="course-table"
-      >UpdateCourse</a
+      >Course</a
     >
     <a mat-button *ngIf="googlelogin.loggedIn" routerLink="Material">Version</a>
     <a mat-button *ngIf="googlelogin.loggedIn" (click)="logout()">Logout</a>

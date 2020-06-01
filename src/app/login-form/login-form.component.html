@@ -1,98 +1,100 @@
-<div class="wrapper fadeInDown">
-  <div id="formContent">
-    <div class="fadeIn first"></div>
+<div class="myimage">
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <div class="fadeIn first"></div>
 
-    <form [formGroup]="loginForm">
-      <div>
-        <input
-          type="text"
-          id="username"
-          class="fadeIn second"
-          name="username"
-          placeholder="username"
-          formControlName="username"
-          autocomplete="off"
-        />
-        <div
-          [class.d-none]="
-            loginForm.get('username').valid ||
-            loginForm.get('username').untouched
-          "
-        >
-          <small
-            *ngIf="loginForm.get('username').errors?.required"
-            class="text-danger"
+      <form [formGroup]="loginForm">
+        <div>
+          <input
+            type="text"
+            id="username"
+            class="fadeIn second"
+            name="username"
+            placeholder="username"
+            formControlName="username"
+            autocomplete="off"
+          />
+          <div
+            [class.d-none]="
+              loginForm.get('username').valid ||
+              loginForm.get('username').untouched
+            "
           >
-            Email is a required field
-          </small>
-          <small
-            *ngIf="loginForm.get('username').errors?.pattern"
-            class="text-danger"
-          >
-            {{ loginForm.get("username").value }} is not a valid email
-          </small>
+            <small
+              *ngIf="loginForm.get('username').errors?.required"
+              class="text-danger"
+            >
+              Email is a required field
+            </small>
+            <small
+              *ngIf="loginForm.get('username').errors?.pattern"
+              class="text-danger"
+            >
+              {{ loginForm.get("username").value }} is not a valid email
+            </small>
+          </div>
         </div>
-      </div>
-      <div>
-        <input
-          type="password"
-          id="password"
-          class="fadeIn third"
-          name="login"
-          placeholder="password"
-          formControlName="password"
-        />
-        <div
-          [class.d-none]="
-            loginForm.get('password').valid ||
-            loginForm.get('password').untouched
-          "
-        >
-          <small
-            *ngIf="loginForm.get('password').errors?.required"
-            class="text-danger"
+        <div>
+          <input
+            type="password"
+            id="password"
+            class="fadeIn third"
+            name="login"
+            placeholder="password"
+            formControlName="password"
+          />
+          <div
+            [class.d-none]="
+              loginForm.get('password').valid ||
+              loginForm.get('password').untouched
+            "
           >
-            Password is a required field.
-          </small>
-          <small
-            *ngIf="loginForm.get('password').errors?.customValidator"
-            class="text-danger"
-          >
-            Password cannot have word password in it.
-          </small>
-          <small
-            *ngIf="loginForm.get('password').errors?.pattern"
-            class="text-danger"
-          >
-            Follow correct password format
-          </small>
+            <small
+              *ngIf="loginForm.get('password').errors?.required"
+              class="text-danger"
+            >
+              Password is a required field.
+            </small>
+            <small
+              *ngIf="loginForm.get('password').errors?.customValidator"
+              class="text-danger"
+            >
+              Password cannot have word password in it.
+            </small>
+            <small
+              *ngIf="loginForm.get('password').errors?.pattern"
+              class="text-danger"
+            >
+              Follow correct password format
+            </small>
+          </div>
         </div>
+
+        <button
+          type="submit"
+          class="fadeIn fourth"
+          value="Log In"
+          [disabled]="!loginForm.valid"
+          (click)="loginService(loginForm.value)"
+        >
+          Login
+        </button>
+        <input
+          type="button"
+          class="fadeIn fourth"
+          value="Load-example"
+          (click)="loadApi()"
+        />
+      </form>
+
+      <div id="formFooter">
+        <input
+          type="button"
+          class="fadeIn fourth"
+          value="Sign In  With google"
+          (click)="googleLogin()"
+        />
       </div>
-
-      <button
-        type="submit"
-        class="fadeIn fourth"
-        value="Log In"
-        [disabled]="!loginForm.valid"
-        (click)="loginService(loginForm.value)"
-      >
-        Login
-      </button>
-      <input
-        type="button"
-        class="fadeIn fourth"
-        value="Load-example"
-        (click)="loadApi()"
-      />
-    </form>
-
-    <div id="formFooter">
-      <input
-        type="button"
-        class="fadeIn fourth"
-        value="Sign In  With google"
-        (click)="googleLogin()"
-      />
     </div>
   </div>
 </div>
