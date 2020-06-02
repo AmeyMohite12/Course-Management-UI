@@ -1,16 +1,28 @@
 import { Injectable } from "@angular/core";
-import { Material, MaterialForm } from "../shared/material.model";
-import { HttpClient } from "@angular/common/http";
+
+import {
+  Material,
+  MaterialForm,
+  ResponseData,
+  ResponseForm,
+} from "../shared/material.model";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 
 import { GoogleLoginService } from "../shared/google-login.service";
+import { Observable, from } from "rxjs";
+
+import { HttpParams } from "@angular/common/http";
 @Injectable({
   providedIn: "root",
 })
 export class MaterialService {
   myMaterial: MaterialForm;
   listMaterial: Material[];
-
   currentList: any[];
+
+  //------------------------------
+  responseData: ResponseData[];
+  responseForm: ResponseForm;
 
   constructor(
     private http: HttpClient,
@@ -42,5 +54,42 @@ export class MaterialService {
       "http://localhost:8080/material/post/",
       this.myMaterial
     );
+  }
+
+  getResponseData() {
+    return this.http
+      .get("http://localhost:8080/file/getall/")
+      .toPromise()
+      .then((res) => {
+        this.responseData = res as ResponseData[];
+      });
+  }
+
+  downloadFile(url: string) {
+    this.http.get(url, { responseType: "blob" }).subscribe((res) => {
+      window.open(window.URL.createObjectURL(res));
+    });
+  }
+
+  postForm(form: any) {
+    let params = new HttpParams();
+
+    var fd = new FormData();
+    console.log("file is ", this.responseForm.file);
+    fd.append("file", this.responseForm.file, this.responseForm.file.name);
+    fd.append("description", this.responseForm.description);
+    fd.append("creator", this.googlelogin.currentUser);
+
+    console.log(fd);
+    // params = params.append("description", this.responseForm.description);
+    // params = params.append("file", this.responseForm.file);
+    // params = params.append("creator", this.googlelogin.currentUser);
+    // console.log(params);
+
+    return this.http
+      .post("http://localhost:8080/file/uploadFile", fd)
+      .subscribe((res) => {
+        console.log("success");
+      });
   }
 }

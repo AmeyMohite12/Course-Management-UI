@@ -31,6 +31,12 @@ export class MaterialFormComponent implements OnInit {
       creator: "",
       name: "",
     };
+
+    this.materialservice.responseForm = {
+      creator: "yep",
+      description: "nope",
+      file: null,
+    };
   }
 
   onSubmit(form: any) {
@@ -48,5 +54,17 @@ export class MaterialFormComponent implements OnInit {
   }
   closeBox() {
     this.dialogref.close();
+  }
+
+  submitForm(form: any) {
+    console.log(form.value.file);
+    console.log(form.value.description);
+    this.materialservice.postForm(form);
+  }
+
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      this.materialservice.responseForm.file = event.target.files[0];
+    }
   }
 }

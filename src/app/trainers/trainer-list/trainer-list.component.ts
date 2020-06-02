@@ -30,4 +30,8 @@ export class TrainerListComponent implements OnInit {
       });
     }
   }
+
+  getCourses(id: number) {
+    this.trainerservice.getTrainerCourse(id);
+  }
 }

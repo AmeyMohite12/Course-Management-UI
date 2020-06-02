@@ -16,3 +16,39 @@
     <td>{{ material.name }}</td>
   </tr>
 </table>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>fileName</th>
+      <th>lastupdated</th>
+      <th>creator</th>
+      <th>description</th>
+      <th>fileDownloadUri</th>
+      <th>fileType</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let material of materialservice.responseData">
+    <td>
+      {{ material.id }}
+    </td>
+    <td>{{ material.fileName }}</td>
+
+    <td>{{ material.lastupdated }}</td>
+    <td>{{ material.creator }}</td>
+    <td>{{ material.description }}</td>
+    <td (click)="downloadfile(material.fileDownloadUri)">
+      {{ material.fileDownloadUri }}
+    </td>
+    <td>{{ material.fileType }}</td>
+  </tr>
+</table>
+
+<!-- fileName: String;
+lastupdated: String;
+creator: String;
+id: number;
+description: String;
+fileDownloadUri: String;
+fileType: String; -->

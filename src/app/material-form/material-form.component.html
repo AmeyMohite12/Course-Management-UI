@@ -44,3 +44,52 @@
     </fieldset>
   </form>
 </div>
+
+<div class="container">
+  <form
+    id="contact"
+    autocomplete="off"
+    (submit)="submitForm(form1)"
+    #form1="ngForm"
+  >
+    <h3>Assignment Material Details</h3>
+    <h4>Upload the file</h4>
+
+    <fieldset>
+      <input
+        name="description"
+        placeholder="Description"
+        tabindex="4"
+        type="email"
+        [(ngModel)]="materialservice.responseForm.description"
+        #name="ngModel"
+      />
+      <!-- <div
+        class="validation-error"
+        *ngIf="description.invalid && description.touched"
+      >
+        This field is required
+      </div> -->
+    </fieldset>
+
+    <fieldset>
+      <input
+        name="file"
+        placeholder="File"
+        tabindex="4"
+        type="file"
+        (change)="onFileSelect($event)"
+      />
+    </fieldset>
+    <fieldset>
+      <button
+        type="submit"
+        name="submit"
+        id="contact-submit"
+        data-submit="...Sending"
+      >
+        Submit
+      </button>
+    </fieldset>
+  </form>
+</div>

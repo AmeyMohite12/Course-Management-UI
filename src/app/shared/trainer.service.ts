@@ -1,12 +1,15 @@
 import { Injectable } from "@angular/core";
 import { Trainer } from "./trainer.model";
 import { HttpClient } from "@angular/common/http";
+import { Course } from "./course.model";
 
 @Injectable({
   providedIn: "root",
 })
 export class TrainerService {
   formData: Trainer;
+
+  course: Course[];
 
   list: Trainer[];
   constructor(private http: HttpClient) {}
@@ -16,6 +19,14 @@ export class TrainerService {
   }
   getCourses() {
     return this.http.get("http://localhost:8080/trainer/get");
+  }
+
+  getTrainerCourse(id: number) {
+    this.http
+      .get("http://localhost:8080/trainer_course/trainer/get/" + id)
+      .subscribe((res) => {
+        this.course = res as Course[];
+      });
   }
 
   updateCourse(formData: Trainer) {

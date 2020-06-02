@@ -18,6 +18,7 @@ export class MaterialListComponent implements OnInit {
   flg: boolean;
   ngOnInit(): void {
     this.materialservice.getMaterial();
+    this.materialservice.getResponseData();
   }
 
   getVersion(id: number) {
@@ -37,5 +38,9 @@ export class MaterialListComponent implements OnInit {
     dialogconfig.width = "50%";
     dialogconfig.height = "50%";
     this.dialog.open(MaterialFormComponent, dialogconfig);
+  }
+
+  downloadfile(url: string) {
+    this.materialservice.downloadFile(url);
   }
 }

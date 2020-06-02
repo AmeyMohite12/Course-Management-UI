@@ -12,3 +12,19 @@ export class MaterialForm {
   creator: String;
   id: number;
 }
+
+export class ResponseData {
+  fileName: string;
+  lastupdated: string;
+  creator: string;
+  id: number;
+  description: string;
+  fileDownloadUri: string;
+  fileType: string;
+}
+
+export class ResponseForm {
+  file: File;
+  description: string;
+  creator: string;
+}
