@@ -5,14 +5,30 @@
       <th>Last Updated</th>
       <th>Version_History</th>
       <th>Created/Updated By</th>
+      <th>FileType</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let m of materialservice.currentList">
       <td>{{ m.id }}</td>
       <td>{{ m.lastupdated | date: "medium" }}</td>
-      <td>{{ m.name }}</td>
+      <td>{{ m.fileName }}</td>
       <td>{{ m.creator }}</td>
+      <td>{{ m.fileType }}</td>
+      <td>{{ m.description }}</td>
     </tr>
   </tbody>
 </table>
+
+<!-- 
+private Long id;
+private String fileName;
+private String fileDownloadUri;
+private String fileType;
+private long size;
+@UpdateTimestamp
+private Date lastupdated;
+private String creator;
+private String description;
+private Long responseid; -->

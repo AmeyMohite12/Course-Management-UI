@@ -17,7 +17,7 @@ export class MaterialListComponent implements OnInit {
   ) {}
   flg: boolean;
   ngOnInit(): void {
-    this.materialservice.getMaterial();
+    //this.materialservice.getMaterial();
     this.materialservice.getResponseData();
   }
 

@@ -25,12 +25,12 @@ export class MaterialFormComponent implements OnInit {
       form.resetForm();
       return;
     }
-    this.materialservice.myMaterial = {
-      id: null,
-      lastupdated: null,
-      creator: "",
-      name: "",
-    };
+    // this.materialservice.myMaterial = {
+    //   id: null,
+    //   lastupdated: null,
+    //   creator: "",
+    //   name: "",
+    // };
 
     this.materialservice.responseForm = {
       creator: "yep",
@@ -39,15 +39,15 @@ export class MaterialFormComponent implements OnInit {
     };
   }
 
-  onSubmit(form: any) {
-    console.log(form.value.name);
-    console.log("I am in submission");
-    this.materialservice.postMaterial().subscribe((res) => {
-      this.materialservice.getMaterial();
-      this.resetForm(form);
-      this.onClose();
-    });
-  }
+  // onSubmit(form: any) {
+  //   console.log(form.value.name);
+  //   console.log("I am in submission");
+  //   this.materialservice.postMaterial().subscribe((res) => {
+  //     this.materialservice.getMaterial();
+  //     this.resetForm(form);
+  //     this.onClose();
+  //   });
+  // }
 
   onClose() {
     this.dialogref.close();

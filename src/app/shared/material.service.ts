@@ -16,8 +16,8 @@ import { HttpParams } from "@angular/common/http";
   providedIn: "root",
 })
 export class MaterialService {
-  myMaterial: MaterialForm;
-  listMaterial: Material[];
+  // myMaterial: MaterialForm;
+  //  listMaterial: Material[];
   currentList: any[];
 
   //------------------------------
@@ -31,30 +31,30 @@ export class MaterialService {
 
   getVersion(id: number) {
     return this.http
-      .get("http://localhost:8080/material/get/" + id)
+      .get("http://localhost:8080/file/get/" + id)
       .toPromise()
       .then((res) => {
         this.currentList = res as any[];
       });
   }
 
-  getMaterial() {
-    return this.http
-      .get("http://localhost:8080/material/get/")
-      .toPromise()
-      .then((res) => {
-        this.listMaterial = res as Material[];
-      });
-  }
+  // getMaterial() {
+  //   return this.http
+  //     .get("http://localhost:8080/material/get/")
+  //     .toPromise()
+  //     .then((res) => {
+  //       this.listMaterial = res as Material[];
+  //     });
+  // }
 
-  postMaterial() {
-    console.log("Current user is ", this.googlelogin.currentUser);
-    this.myMaterial.creator = this.googlelogin.currentUser;
-    return this.http.post(
-      "http://localhost:8080/material/post/",
-      this.myMaterial
-    );
-  }
+  // postMaterial() {
+  //   console.log("Current user is ", this.googlelogin.currentUser);
+  //   this.myMaterial.creator = this.googlelogin.currentUser;
+  //   return this.http.post(
+  //     "http://localhost:8080/material/post/",
+  //     this.myMaterial
+  //   );
+  // }
 
   getResponseData() {
     return this.http
@@ -71,6 +71,7 @@ export class MaterialService {
     });
   }
 
+  /// Change name to upload
   postForm(form: any) {
     let params = new HttpParams();
 
@@ -81,10 +82,6 @@ export class MaterialService {
     fd.append("creator", this.googlelogin.currentUser);
 
     console.log(fd);
-    // params = params.append("description", this.responseForm.description);
-    // params = params.append("file", this.responseForm.file);
-    // params = params.append("creator", this.googlelogin.currentUser);
-    // console.log(params);
 
     return this.http
       .post("http://localhost:8080/file/uploadFile", fd)

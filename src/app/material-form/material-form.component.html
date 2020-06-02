@@ -2,53 +2,6 @@
   <form
     id="contact"
     autocomplete="off"
-    (submit)="onSubmit(form)"
-    #form="ngForm"
-  >
-    <h3>Assignment Material Details</h3>
-    <h4>Upload the file(proto :- write file name)</h4>
-
-    <fieldset>
-      <input name="id" tabindex="1" type="email" type="hidden" />
-    </fieldset>
-
-    <fieldset>
-      <input type="hidden" name="lastupdated" tabindex="2" />
-    </fieldset>
-
-    <fieldset>
-      <input
-        name="name"
-        placeholder="File-name"
-        tabindex="4"
-        type="email"
-        required
-        [(ngModel)]="materialservice.myMaterial.name"
-        #name="ngModel"
-      />
-      <div class="validation-error" *ngIf="name.invalid && name.touched">
-        This field is required
-      </div>
-    </fieldset>
-
-    <fieldset>
-      <button
-        type="submit"
-        name="submit"
-        id="contact-submit"
-        data-submit="...Sending"
-        [disabled]="form.invalid"
-      >
-        Submit
-      </button>
-    </fieldset>
-  </form>
-</div>
-
-<div class="container">
-  <form
-    id="contact"
-    autocomplete="off"
     (submit)="submitForm(form1)"
     #form1="ngForm"
   >
@@ -93,3 +46,50 @@
     </fieldset>
   </form>
 </div>
+
+<!-- <div class="container">
+  <form
+    id="contact"
+    autocomplete="off"
+    (submit)="onSubmit(form)"
+    #form="ngForm"
+  >
+    <h3>Assignment Material Details</h3>
+    <h4>Upload the file(proto :- write file name)</h4>
+
+    <fieldset>
+      <input name="id" tabindex="1" type="email" type="hidden" />
+    </fieldset>
+
+    <fieldset>
+      <input type="hidden" name="lastupdated" tabindex="2" />
+    </fieldset>
+
+    <fieldset>
+      <input
+        name="name"
+        placeholder="File-name"
+        tabindex="4"
+        type="email"
+        required
+        [(ngModel)]="materialservice.myMaterial.name"
+        #name="ngModel"
+      />
+      <div class="validation-error" *ngIf="name.invalid && name.touched">
+        This field is required
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <button
+        type="submit"
+        name="submit"
+        id="contact-submit"
+        data-submit="...Sending"
+        [disabled]="form.invalid"
+      >
+        Submit
+      </button>
+    </fieldset>
+  </form>
+</div> -->
