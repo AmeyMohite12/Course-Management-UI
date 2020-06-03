@@ -27,8 +27,8 @@ export class MaterialListComponent implements OnInit {
       this.flg = true;
       const dialogconfig = new MatDialogConfig();
       dialogconfig.autoFocus = true;
-      dialogconfig.width = "80%";
-      dialogconfig.height = "80%";
+      dialogconfig.width = "100%";
+      dialogconfig.height = "100%";
       this.dialog.open(MaterialVersionComponent, dialogconfig);
     });
   }

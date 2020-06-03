@@ -12,6 +12,11 @@ import { GoogleLoginService } from "../shared/google-login.service";
 import { Observable, from } from "rxjs";
 
 import { HttpParams } from "@angular/common/http";
+
+import { throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { HttpErrorResponse } from "@angular/common/http";
+
 @Injectable({
   providedIn: "root",
 })
@@ -72,7 +77,7 @@ export class MaterialService {
   }
 
   /// Change name to upload
-  postForm(form: any) {
+  postForm(form: any): Observable<any> {
     let params = new HttpParams();
 
     var fd = new FormData();
@@ -84,9 +89,29 @@ export class MaterialService {
     console.log(fd);
 
     return this.http
-      .post("http://localhost:8080/file/uploadFile", fd)
-      .subscribe((res) => {
-        console.log("success");
-      });
+      .post("http://localhost:8080/file/uploadFile", fd, {
+        reportProgress: true,
+        observe: "events",
+      })
+      .pipe(catchError(this.errorMgmt));
+  }
+
+  errorMgmt(error: HttpErrorResponse) {
+    let errorMessage = "";
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  }
+
+  downloadFileVersion(url: string) {
+    this.http.get(url, { responseType: "blob" }).subscribe((res) => {
+      window.open(window.URL.createObjectURL(res));
+    });
   }
 }

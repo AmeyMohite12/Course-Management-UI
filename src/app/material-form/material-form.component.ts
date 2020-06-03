@@ -3,6 +3,7 @@ import { Component, OnInit } from "@angular/core";
 import { MaterialService } from "../shared/material.service";
 
 import { MatDialogRef } from "@angular/material/dialog";
+import { HttpEvent, HttpEventType } from "@angular/common/http";
 
 @Component({
   selector: "app-material-form",
@@ -14,6 +15,7 @@ export class MaterialFormComponent implements OnInit {
     public materialservice: MaterialService,
     public dialogref: MatDialogRef<MaterialFormComponent>
   ) {}
+  progress: number = 0;
 
   ngOnInit(): void {
     this.resetForm(null);
@@ -59,7 +61,25 @@ export class MaterialFormComponent implements OnInit {
   submitForm(form: any) {
     console.log(form.value.file);
     console.log(form.value.description);
-    this.materialservice.postForm(form);
+    this.materialservice.postForm(form).subscribe((event: HttpEvent<any>) => {
+      switch (event.type) {
+        case HttpEventType.Sent:
+          console.log("Request has been made!");
+          break;
+        case HttpEventType.ResponseHeader:
+          console.log("Response header has been received!");
+          break;
+        case HttpEventType.UploadProgress:
+          this.progress = Math.round((event.loaded / event.total) * 100);
+          console.log(`Uploaded! ${this.progress}%`);
+          break;
+        case HttpEventType.Response:
+          console.log("User successfully created!", event.body);
+          setTimeout(() => {
+            this.progress = 0;
+          }, 1500);
+      }
+    });
   }
 
   onFileSelect(event) {

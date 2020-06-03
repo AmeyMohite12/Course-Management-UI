@@ -7,6 +7,7 @@
       <th>Created/Updated By</th>
       <th>FileType</th>
       <th>Description</th>
+      <th>Download</th>
     </tr>
   </thead>
   <tbody>
@@ -17,6 +18,9 @@
       <td>{{ m.creator }}</td>
       <td>{{ m.fileType }}</td>
       <td>{{ m.description }}</td>
+      <td (click)="downloadFileVersion(m.fileDownloadUri)">
+        {{ m.fileDownloadUri }}
+      </td>
     </tr>
   </tbody>
 </table>

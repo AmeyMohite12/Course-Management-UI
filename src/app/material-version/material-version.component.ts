@@ -16,4 +16,8 @@ export class MaterialVersionComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.materialservice.currentList, " is here");
   }
+
+  downloadFileVersion(url: string) {
+    this.materialservice.downloadFileVersion(url);
+  }
 }
