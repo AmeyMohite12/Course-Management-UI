@@ -1,0 +1,10 @@
+.wrapme {
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top: 50px;
+}
+
+.button {
+  position: absolute;
+  top: 50%;
+}

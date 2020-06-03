@@ -1,14 +1,122 @@
 <div class="jumbotron">
-  <mat-form-field class="myinputfield">
-    <input
-      matInput
-      (keyup)="applyfilter($event.target.value)"
-      placeholder="Search"
+  <div class="container">
+    <form
+      id="contact"
+      #form="ngForm"
       autocomplete="off"
-    />
-  </mat-form-field>
+      (submit)="onSubmit(form)"
+    >
+      <h3>Course Details</h3>
+      <h4>Change one or more fields , no field should be empty</h4>
+      <fieldset>
+        <input
+          name="id"
+          [(ngModel)]="courseservice.formData.id"
+          #id="ngModel"
+          tabindex="1"
+          type="email"
+          type="hidden"
+        />
+      </fieldset>
+      <fieldset>
+        <input
+          type="hidden"
+          name="lastupdated"
+          [(ngModel)]="courseservice.formData.lastupdated"
+          #lastupdated="ngModel"
+          tabindex="2"
+        />
+      </fieldset>
+      <fieldset>
+        <input
+          name="description"
+          [(ngModel)]="courseservice.formData.description"
+          #description="ngModel"
+          placeholder="Description"
+          required
+          tabindex="3"
+          type="email"
+        />
+        <div
+          class="validation-error"
+          *ngIf="description.invalid && description.touched"
+        >
+          This field is required
+        </div>
+      </fieldset>
+      <fieldset>
+        <input
+          name="creator"
+          [(ngModel)]="courseservice.formData.creator"
+          #creator="ngModel"
+          placeholder="Creator"
+          tabindex="4"
+          type="email"
+          required
+        />
+        <div
+          class="validation-error"
+          *ngIf="creator.invalid && creator.touched"
+        >
+          This field is required
+        </div>
+      </fieldset>
+      <fieldset>
+        <input
+          name="skill"
+          [(ngModel)]="courseservice.formData.skill"
+          #skill="ngModel"
+          required
+          placeholder="Skill"
+          tabindex="5"
+          type="email"
+        />
+        <div class="validation-error" *ngIf="skill.invalid && skill.touched">
+          This field is required
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <input
+          name="prerequisite"
+          [(ngModel)]="courseservice.formData.prerequisite"
+          #prerequisite="ngModel"
+          required
+          placeholder="Pre-Requisite"
+          tabindex="6"
+          type="email"
+        />
+        <div
+          class="validation-error"
+          *ngIf="prerequisite.invalid && prerequisite.touched"
+        >
+          This field is required
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <button
+          type="submit"
+          name="submit"
+          id="contact-submit"
+          data-submit="...Sending"
+          [disabled]="form.invalid"
+        >
+          Submit
+        </button>
+      </fieldset>
+    </form>
+  </div>
 
   <div class="data-table-comp">
+    <mat-form-field class="myinputfield">
+      <input
+        matInput
+        (keyup)="applyfilter($event.target.value)"
+        placeholder="Search"
+        autocomplete="off"
+      />
+    </mat-form-field>
     <mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
       <!-- Position Column -->
       <ng-container matColumnDef="id">
@@ -175,113 +283,4 @@
     </form>
   </div>
 </div> -->
-
-  <div class="container">
-    <form
-      id="contact"
-      #form="ngForm"
-      autocomplete="off"
-      (submit)="onSubmit(form)"
-    >
-      <h3>Course Details</h3>
-      <h4>Change one or more fields , no field should be empty</h4>
-      <fieldset>
-        <input
-          name="id"
-          [(ngModel)]="courseservice.formData.id"
-          #id="ngModel"
-          tabindex="1"
-          type="email"
-          type="hidden"
-        />
-      </fieldset>
-      <fieldset>
-        <input
-          type="hidden"
-          name="lastupdated"
-          [(ngModel)]="courseservice.formData.lastupdated"
-          #lastupdated="ngModel"
-          tabindex="2"
-        />
-      </fieldset>
-      <fieldset>
-        <input
-          name="description"
-          [(ngModel)]="courseservice.formData.description"
-          #description="ngModel"
-          placeholder="Description"
-          required
-          tabindex="3"
-          type="email"
-        />
-        <div
-          class="validation-error"
-          *ngIf="description.invalid && description.touched"
-        >
-          This field is required
-        </div>
-      </fieldset>
-      <fieldset>
-        <input
-          name="creator"
-          [(ngModel)]="courseservice.formData.creator"
-          #creator="ngModel"
-          placeholder="Creator"
-          tabindex="4"
-          type="email"
-          required
-        />
-        <div
-          class="validation-error"
-          *ngIf="creator.invalid && creator.touched"
-        >
-          This field is required
-        </div>
-      </fieldset>
-      <fieldset>
-        <input
-          name="skill"
-          [(ngModel)]="courseservice.formData.skill"
-          #skill="ngModel"
-          required
-          placeholder="Skill"
-          tabindex="5"
-          type="email"
-        />
-        <div class="validation-error" *ngIf="skill.invalid && skill.touched">
-          This field is required
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <input
-          name="prerequisite"
-          [(ngModel)]="courseservice.formData.prerequisite"
-          #prerequisite="ngModel"
-          required
-          placeholder="Pre-Requisite"
-          tabindex="6"
-          type="email"
-        />
-        <div
-          class="validation-error"
-          *ngIf="prerequisite.invalid && prerequisite.touched"
-        >
-          This field is required
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <button
-          type="submit"
-          name="submit"
-          id="contact-submit"
-          data-submit="...Sending"
-          [disabled]="form.invalid"
-        >
-          Submit
-        </button>
-      </fieldset>
-    </form>
-  </div>
 </div>

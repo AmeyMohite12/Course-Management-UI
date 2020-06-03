@@ -2,12 +2,16 @@ import { Injectable } from "@angular/core";
 import { Trainer } from "./trainer.model";
 import { HttpClient } from "@angular/common/http";
 import { Course } from "./course.model";
+import { ConstantPool } from "@angular/compiler";
+import { ToastrComponentlessModule } from "ngx-toastr";
 
 @Injectable({
   providedIn: "root",
 })
 export class TrainerService {
   formData: Trainer;
+
+  currentTrainer: number;
 
   course: Course[];
 
@@ -47,5 +51,22 @@ export class TrainerService {
       .then((res) => {
         this.list = res as Trainer[];
       });
+  }
+
+  assignCourse(id: number) {
+    console.log(
+      "url",
+      "http://localhost:8080/trainer_course/post/" +
+        this.currentTrainer +
+        "/" +
+        id
+    );
+    return this.http.post(
+      "http://localhost:8080/trainer_course/post/" +
+        this.currentTrainer +
+        "/" +
+        id,
+      null
+    );
   }
 }

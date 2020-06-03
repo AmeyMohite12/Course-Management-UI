@@ -49,6 +49,7 @@ import { TrainersComponent } from "./trainers/trainers.component";
 import { TrainerComponent } from "./trainers/trainer/trainer.component";
 import { TrainerListComponent } from "./trainers/trainer-list/trainer-list.component";
 import { TrainerService } from "./shared/trainer.service";
+import { ViewTrainerComponent } from "./trainers/view-trainer/view-trainer.component";
 
 export function socialConfigs() {
   const config = new AuthServiceConfig([
@@ -79,6 +80,7 @@ export function socialConfigs() {
     TrainersComponent,
     TrainerComponent,
     TrainerListComponent,
+    ViewTrainerComponent,
   ],
   imports: [
     MatToolbarModule,
@@ -143,6 +145,10 @@ export function socialConfigs() {
     GoogleLoginService,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [MaterialFormComponent, MaterialVersionComponent],
+  entryComponents: [
+    MaterialFormComponent,
+    MaterialVersionComponent,
+    ViewTrainerComponent,
+  ],
 })
 export class AppModule {}
