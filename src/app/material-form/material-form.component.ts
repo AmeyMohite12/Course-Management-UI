@@ -35,10 +35,14 @@ export class MaterialFormComponent implements OnInit {
     // };
 
     this.materialservice.responseForm = {
-      creator: "yep",
-      description: "nope",
+      creator: "",
+      description: "",
       file: null,
     };
+    console.log(
+      "In form data loading of materialservice ",
+      this.materialservice.responseForm
+    );
   }
 
   // onSubmit(form: any) {
@@ -59,8 +63,30 @@ export class MaterialFormComponent implements OnInit {
   }
 
   submitForm(form: any) {
-    console.log(form.value.file);
-    console.log(form.value.description);
+    if (this.materialservice.currentId != null) {
+      /// update operation
+      this.materialservice.updateFile().subscribe((event: HttpEvent<any>) => {
+        switch (event.type) {
+          case HttpEventType.Sent:
+            console.log("Request has been made!");
+            break;
+          case HttpEventType.ResponseHeader:
+            console.log("Response header has been received!");
+            break;
+          case HttpEventType.UploadProgress:
+            this.progress = Math.round((event.loaded / event.total) * 100);
+            console.log(`Uploaded! ${this.progress}%`);
+            break;
+          case HttpEventType.Response:
+            console.log("User successfully created!", event.body);
+            setTimeout(() => {
+              this.progress = 0;
+            }, 1500);
+        }
+      });
+      return;
+    }
+
     this.materialservice.postForm(form).subscribe((event: HttpEvent<any>) => {
       switch (event.type) {
         case HttpEventType.Sent:

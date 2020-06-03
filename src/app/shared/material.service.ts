@@ -29,6 +29,8 @@ export class MaterialService {
   responseData: ResponseData[];
   responseForm: ResponseForm;
 
+  currentId: number;
+
   constructor(
     private http: HttpClient,
     private googlelogin: GoogleLoginService
@@ -90,6 +92,21 @@ export class MaterialService {
 
     return this.http
       .post("http://localhost:8080/file/uploadFile", fd, {
+        reportProgress: true,
+        observe: "events",
+      })
+      .pipe(catchError(this.errorMgmt));
+  }
+
+  updateFile() {
+    var fd = new FormData();
+    console.log("file is ", this.responseForm.file);
+    fd.append("file", this.responseForm.file, this.responseForm.file.name);
+    fd.append("description", this.responseForm.description);
+    fd.append("creator", this.googlelogin.currentUser);
+    fd.append("rid", this.currentId.toString());
+    return this.http
+      .post("http://localhost:8080/file/updateFile", fd, {
         reportProgress: true,
         observe: "events",
       })

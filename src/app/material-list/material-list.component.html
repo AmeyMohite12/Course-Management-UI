@@ -21,7 +21,9 @@
     <td>{{ material.fileName }}</td>
 
     <td>{{ material.lastupdated | date: "medium" }}</td>
-    <td>{{ material.creator }}</td>
+    <td (click)="updateFile(material.id)">
+      {{ material.creator }} Click me for update
+    </td>
     <td>{{ material.description }}</td>
     <td (click)="downloadfile(material.fileDownloadUri)">
       <mat-icon>cloud_download</mat-icon>

@@ -7,6 +7,15 @@
   >
     <h3>Assignment Material Details</h3>
     <h4>Upload the file</h4>
+    <fieldset>
+      <input
+        name="id"
+        placeholder="Id"
+        [(ngModel)]="materialservice.currentId"
+        #id="ngModel"
+        hidden
+      />
+    </fieldset>
 
     <fieldset>
       <input
@@ -15,16 +24,16 @@
         tabindex="4"
         type="email"
         [(ngModel)]="materialservice.responseForm.description"
-        #name="ngModel"
+        #description="ngModel"
+        required
       />
-      <!-- <div
+      <div
         class="validation-error"
         *ngIf="description.invalid && description.touched"
       >
         This field is required
-      </div> -->
+      </div>
     </fieldset>
-
     <fieldset>
       <input
         name="file"
@@ -32,6 +41,7 @@
         tabindex="4"
         type="file"
         (change)="onFileSelect($event)"
+        required
       />
     </fieldset>
     <fieldset>
@@ -40,19 +50,19 @@
         name="submit"
         id="contact-submit"
         data-submit="...Sending"
+        [disabled]="form1.invalid || materialservice.responseForm.file == null"
       >
         Submit
       </button>
     </fieldset>
+    <div class="progress form-group" *ngIf="progress > 0">
+      <div
+        class="progress-bar progress-bar-striped bg-success"
+        role="progressbar"
+        [style.width.%]="progress"
+      ></div>
+    </div>
   </form>
-</div>
-
-<div class="progress form-group" *ngIf="progress > 0">
-  <div
-    class="progress-bar progress-bar-striped bg-success"
-    role="progressbar"
-    [style.width.%]="progress"
-  ></div>
 </div>
 
 <!-- <div class="container">

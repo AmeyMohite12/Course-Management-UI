@@ -33,11 +33,24 @@ export class MaterialListComponent implements OnInit {
     });
   }
   postMaterial() {
+    this.materialservice.currentId = null;
     const dialogconfig = new MatDialogConfig();
-    dialogconfig.autoFocus = true;
-    dialogconfig.width = "50%";
-    dialogconfig.height = "50%";
-    this.dialog.open(MaterialFormComponent, dialogconfig);
+
+    this.dialog.open(MaterialFormComponent, {
+      height: "700px",
+      width: "700px",
+      autoFocus: true,
+    });
+  }
+
+  updateFile(id: number) {
+    this.materialservice.currentId = id;
+
+    this.dialog.open(MaterialFormComponent, {
+      height: "700px",
+      width: "700px",
+      autoFocus: true,
+    });
   }
 
   downloadfile(url: string) {
