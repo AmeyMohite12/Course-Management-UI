@@ -12,6 +12,8 @@
       >Course</a
     >
     <a mat-button *ngIf="googlelogin.loggedIn" routerLink="Material">Version</a>
+    <a mat-button *ngIf="googlelogin.loggedIn" routerLink="Trends">Trends</a>
+
     <a mat-button *ngIf="googlelogin.loggedIn" (click)="logout()">Logout</a>
   </div>
 </mat-toolbar>

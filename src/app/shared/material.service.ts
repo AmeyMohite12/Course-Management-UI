@@ -98,6 +98,14 @@ export class MaterialService {
       .pipe(catchError(this.errorMgmt));
   }
 
+  deleteFile(id: number) {
+    if (!this.googlelogin.superUser) {
+      this.googlelogin.checkSuperUser();
+      return;
+    }
+    return this.http.delete("http://localhost:8080/file/delete/" + id);
+  }
+
   updateFile() {
     if (!this.googlelogin.superUser) {
       this.googlelogin.checkSuperUser();

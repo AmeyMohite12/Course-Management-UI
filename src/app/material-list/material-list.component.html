@@ -15,6 +15,7 @@
 
       <th>Version History</th>
       <th>Created/Updated By</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tr *ngFor="let material of materialservice.responseData">
@@ -32,6 +33,10 @@
 
     <td (click)="updateFile(material.id)">
       {{ material.creator }}
+    </td>
+
+    <td (click)="deleteFile(material.id)">
+      <mat-icon>delete</mat-icon>
     </td>
   </tr>
 </table>

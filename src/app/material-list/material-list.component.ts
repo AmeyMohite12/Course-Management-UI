@@ -5,6 +5,8 @@ import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 
 import { MaterialFormComponent } from "../material-form/material-form.component";
 import { MaterialVersionComponent } from "../material-version/material-version.component";
+import { ToastrService } from "ngx-toastr";
+
 @Component({
   selector: "app-material-list",
   templateUrl: "./material-list.component.html",
@@ -13,7 +15,8 @@ import { MaterialVersionComponent } from "../material-version/material-version.c
 export class MaterialListComponent implements OnInit {
   constructor(
     public materialservice: MaterialService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private toastr: ToastrService
   ) {}
   flg: boolean;
   ngOnInit(): void {
@@ -51,6 +54,17 @@ export class MaterialListComponent implements OnInit {
       width: "700px",
       autoFocus: true,
     });
+  }
+
+  deleteFile(id: number) {
+    if (
+      confirm("This will delete all the previous version and cannot be undone")
+    ) {
+      this.materialservice.deleteFile(id).subscribe((res) => {
+        this.materialservice.getResponseData();
+        this.toastr.warning("Deleted Successfully", "Assignment");
+      });
+    }
   }
 
   downloadfile(url: string) {

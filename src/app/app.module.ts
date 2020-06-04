@@ -51,6 +51,9 @@ import { TrainerListComponent } from "./trainers/trainer-list/trainer-list.compo
 import { TrainerService } from "./shared/trainer.service";
 import { ViewTrainerComponent } from "./trainers/view-trainer/view-trainer.component";
 import { MatSelectModule } from "@angular/material/select";
+import { TrendsComponent } from "./trends/trends.component";
+
+import { NgxChartsModule } from "@swimlane/ngx-charts";
 
 export function socialConfigs() {
   const config = new AuthServiceConfig([
@@ -82,8 +85,10 @@ export function socialConfigs() {
     TrainerComponent,
     TrainerListComponent,
     ViewTrainerComponent,
+    TrendsComponent,
   ],
   imports: [
+    NgxChartsModule,
     MatSelectModule,
     MatToolbarModule,
     MatIconModule,
@@ -116,6 +121,11 @@ export function socialConfigs() {
       {
         path: "Material",
         component: MaterialListComponent, /// MaterialLitComponente , MaterialFormComponent
+        canActivate: [AuthguardService],
+      },
+      {
+        path: "Trends",
+        component: TrendsComponent,
         canActivate: [AuthguardService],
       },
       {

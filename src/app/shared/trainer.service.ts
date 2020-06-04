@@ -11,6 +11,8 @@ import { GoogleLoginService } from "../shared/google-login.service";
 export class TrainerService {
   formData: Trainer;
 
+  trainer_course_mapping: any[];
+
   currentTrainer: number;
 
   course: Course[];
@@ -20,6 +22,12 @@ export class TrainerService {
     private http: HttpClient,
     private googleloginservice: GoogleLoginService
   ) {}
+
+  getTrainerCourseMapping() {
+    return this.http.get(
+      "http://localhost:8080/trainer_course/trainer_course_count"
+    );
+  }
 
   postCourse(formData: Trainer) {
     return this.http.post("http://localhost:8080/trainer/post", formData);
@@ -32,6 +40,7 @@ export class TrainerService {
     this.http
       .get("http://localhost:8080/trainer_course/trainer/get/" + id)
       .subscribe((res) => {
+        console.log(res);
         this.course = res as Course[];
       });
   }
