@@ -4,6 +4,7 @@ import { MaterialService } from "../shared/material.service";
 
 import { MatDialogRef } from "@angular/material/dialog";
 import { HttpEvent, HttpEventType } from "@angular/common/http";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-material-form",
@@ -13,7 +14,8 @@ import { HttpEvent, HttpEventType } from "@angular/common/http";
 export class MaterialFormComponent implements OnInit {
   constructor(
     public materialservice: MaterialService,
-    public dialogref: MatDialogRef<MaterialFormComponent>
+    public dialogref: MatDialogRef<MaterialFormComponent>,
+    private toastr: ToastrService
   ) {}
   progress: number = 0;
 
@@ -27,12 +29,6 @@ export class MaterialFormComponent implements OnInit {
       form.resetForm();
       return;
     }
-    // this.materialservice.myMaterial = {
-    //   id: null,
-    //   lastupdated: null,
-    //   creator: "",
-    //   name: "",
-    // };
 
     this.materialservice.responseForm = {
       creator: "",
@@ -44,16 +40,6 @@ export class MaterialFormComponent implements OnInit {
       this.materialservice.responseForm
     );
   }
-
-  // onSubmit(form: any) {
-  //   console.log(form.value.name);
-  //   console.log("I am in submission");
-  //   this.materialservice.postMaterial().subscribe((res) => {
-  //     this.materialservice.getMaterial();
-  //     this.resetForm(form);
-  //     this.onClose();
-  //   });
-  // }
 
   onClose() {
     this.dialogref.close();
@@ -81,6 +67,10 @@ export class MaterialFormComponent implements OnInit {
             console.log("User successfully created!", event.body);
             setTimeout(() => {
               this.progress = 0;
+              this.dialogref.close();
+              this.materialservice.getResponseData();
+
+              this.toastr.info("Updated Successfully", "Assignment");
             }, 1500);
         }
       });
@@ -103,6 +93,10 @@ export class MaterialFormComponent implements OnInit {
           console.log("User successfully created!", event.body);
           setTimeout(() => {
             this.progress = 0;
+            this.toastr.success("Posted Successfully", "Assignment");
+            this.materialservice.getResponseData();
+
+            this.dialogref.close();
           }, 1500);
       }
     });

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { TrainerService } from "../../shared/trainer.service";
+import { from } from "rxjs";
 @Component({
   selector: "app-trainer",
   templateUrl: "./trainer.component.html",
@@ -13,7 +14,13 @@ export class TrainerComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
+  selectedGender: any;
+
+  selectedType: any;
+
   ngOnInit(): void {
+    this.selectedGender = "";
+    this.selectedType = "";
     this.resetForm();
   }
   resetForm(form?: NgForm) {
@@ -28,6 +35,8 @@ export class TrainerComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
+    form.value.gender = this.selectedGender;
+    form.value.type = this.selectedType;
     if (form.value.id == null) {
       this.insertRecord(form);
     } else {

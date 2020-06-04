@@ -50,6 +50,7 @@ import { TrainerComponent } from "./trainers/trainer/trainer.component";
 import { TrainerListComponent } from "./trainers/trainer-list/trainer-list.component";
 import { TrainerService } from "./shared/trainer.service";
 import { ViewTrainerComponent } from "./trainers/view-trainer/view-trainer.component";
+import { MatSelectModule } from "@angular/material/select";
 
 export function socialConfigs() {
   const config = new AuthServiceConfig([
@@ -83,6 +84,7 @@ export function socialConfigs() {
     ViewTrainerComponent,
   ],
   imports: [
+    MatSelectModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

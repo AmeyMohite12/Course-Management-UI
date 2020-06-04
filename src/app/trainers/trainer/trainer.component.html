@@ -20,18 +20,49 @@
       This field is required
     </div>
   </div>
-
-  <div class="form-group">
-    <label>Type</label>
-    <input
-      name="type"
-      [(ngModel)]="trainerservice.formData.type"
-      class="form-control"
-      #type="ngModel"
-    />
+  <div>
+    <mat-form-field required>
+      <mat-label>Type</mat-label>
+      <mat-select [(value)]="selectedType">
+        <mat-option value="Internal">Internal</mat-option>
+        <mat-option value="External">External</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <div class="form-group">
+    <label>Age</label>
+    <input
+      name="age"
+      [(ngModel)]="trainerservice.formData.age"
+      class="form-control"
+      #age="ngModel"
+      required
+      type="number"
+    />
+    <div class="validation-error" *ngIf="age.invalid && age.touched">
+      This field is required
+    </div>
+  </div>
+  <mat-form-field required>
+    <mat-label>Gender</mat-label>
+    <mat-select [(value)]="selectedGender">
+      <mat-option value="Male">Male</mat-option>
+      <mat-option value="Female">Female</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div>
+    <button
+      type="submit"
+      class="btn btn-lg btn-block"
+      [disabled]="form.invalid || selectedGender === '' || selectedType === ''"
+    >
+      Submit
+    </button>
+  </div>
+</form>
+<!-- <div class="form-group">
     <label>Gender</label>
     <input
       name="gender"
@@ -43,29 +74,13 @@
     <div class="validation-error" *ngIf="gender.invalid && gender.touched">
       This field is required
     </div>
-  </div>
-
-  <div class="form-group">
-    <label>Age</label>
+  </div> -->
+<!-- <div class="form-group">
+    <label>Type</label>
     <input
-      name="age"
-      [(ngModel)]="trainerservice.formData.age"
+      name="type"
+      [(ngModel)]="trainerservice.formData.type"
       class="form-control"
-      #age="ngModel"
-      required
+      #type="ngModel"
     />
-    <div class="validation-error" *ngIf="age.invalid && age.touched">
-      This field is required
-    </div>
-  </div>
-
-  <div>
-    <button
-      type="submit"
-      class="btn btn-lg btn-block"
-      [disabled]="form.invalid"
-    >
-      Submit
-    </button>
-  </div>
-</form>
+  </div> -->

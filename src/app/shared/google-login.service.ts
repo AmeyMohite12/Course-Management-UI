@@ -14,21 +14,29 @@ export class GoogleLoginService {
   user: SocialUser;
   loggedIn: boolean;
   currentUser: string;
+  currentUserName: String;
+
+  superUser: boolean;
 
   constructor(private authservice: AuthService, private router: Router) {}
 
   signInWithGoogle(): void {
     this.authservice.signIn(GoogleLoginProvider.PROVIDER_ID).then((res) => {
       this.user = res;
+      console.log(this.user);
       this.loggedIn = true;
       this.currentUser = this.user.email;
-      this.router.navigate(["/course"]);
+      this.currentUserName = this.user.firstName;
+      this.router.navigate(["/course-table"]);
+      this.superUser = false;
     });
   }
 
   logout() {
     console.log("in logout");
     this.loggedIn = false;
+    this.superUser = false;
+
     this.router.navigate([""]);
   }
 
@@ -36,6 +44,14 @@ export class GoogleLoginService {
     this.authservice.signOut().then((res) => {
       this.user = null;
       this.loggedIn = false;
+      this.superUser = false;
     });
+  }
+
+  checkSuperUser() {
+    if (this.superUser) {
+      return;
+    }
+    this.router.navigate(["NotFound"]);
   }
 }

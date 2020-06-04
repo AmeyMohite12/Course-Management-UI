@@ -4,7 +4,7 @@ import { HttpClient } from "@angular/common/http";
 import { Course } from "./course.model";
 import { ConstantPool } from "@angular/compiler";
 import { ToastrComponentlessModule } from "ngx-toastr";
-
+import { GoogleLoginService } from "../shared/google-login.service";
 @Injectable({
   providedIn: "root",
 })
@@ -16,7 +16,10 @@ export class TrainerService {
   course: Course[];
 
   list: Trainer[];
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private googleloginservice: GoogleLoginService
+  ) {}
 
   postCourse(formData: Trainer) {
     return this.http.post("http://localhost:8080/trainer/post", formData);
@@ -34,6 +37,10 @@ export class TrainerService {
   }
 
   updateCourse(formData: Trainer) {
+    if (!this.googleloginservice.superUser) {
+      this.googleloginservice.checkSuperUser();
+      return;
+    }
     return this.http.post(
       "http://localhost:8080/trainer/update/" + formData.id,
       formData
@@ -41,6 +48,10 @@ export class TrainerService {
   }
 
   deleteCourse(id: number) {
+    if (!this.googleloginservice.superUser) {
+      this.googleloginservice.checkSuperUser();
+      return;
+    }
     return this.http.delete("http://localhost:8080/trainer/delete/" + id);
   }
 

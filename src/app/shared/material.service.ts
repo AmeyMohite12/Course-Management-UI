@@ -99,6 +99,10 @@ export class MaterialService {
   }
 
   updateFile() {
+    if (!this.googlelogin.superUser) {
+      this.googlelogin.checkSuperUser();
+      return;
+    }
     var fd = new FormData();
     console.log("file is ", this.responseForm.file);
     fd.append("file", this.responseForm.file, this.responseForm.file.name);
