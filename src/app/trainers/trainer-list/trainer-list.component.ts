@@ -43,7 +43,7 @@ export class TrainerListComponent implements OnInit {
     this.dialog.open(ViewTrainerComponent, {
       height: "900px",
       width: "900px",
-      autoFocus: true,
+      autoFocus: false,
     });
   }
 }

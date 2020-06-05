@@ -12,6 +12,40 @@
   </tr>
 </table>
 
+<div class="myassignForm">
+  <h1 mat-dialog-title>Assign Course</h1>
+  <form class="example-form" [formGroup]>
+    <mat-form-field class="example-full-width">
+      <mat-label>Course</mat-label>
+      <input
+        type="text"
+        matInput
+        [formControl]="myControl"
+        [matAutocomplete]="auto"
+      />
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option
+          *ngFor="let option of filteredOptions | async"
+          [value]="option"
+        >
+          {{ option.description }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+  <div mat-dialog-actions>
+    <button mat-stroked-button mat-button (click)="close()">Cancel</button>
+    <button
+      mat-stroked-button
+      mat-button
+      [disabled]="!myControl.valid"
+      (click)="assignCourse(1)"
+    >
+      Assign
+    </button>
+  </div>
+</div>
+<!-- 
 <div class="container">
   <form
     id="contact"
@@ -46,60 +80,4 @@
       </button>
     </fieldset>
   </form>
-</div>
-<!-- 
-
-<form class="example-form" [formGroup]>
-  <mat-form-field class="example-full-width">
-    <mat-label>Course Name</mat-label>
-    <input
-      type="text"
-      matInput
-      [formControl]="myControl"
-      [matAutocomplete]="auto"
-    />
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option
-        *ngFor="let option of filteredOptions | async"
-        [value]="option"
-      >
-        {{ option.name }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form>
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Assign Course</mat-label>
-    <input
-      type="text"
-      placeholder="Pick one"
-      aria-label="Number"
-      matInput
-      [formControl]="myControl"
-      [matAutocomplete]="auto"
-      #courseinput
-      required
-      ngModel
-    />
-    <mat-autocomplete #auto="matAutocomplete">
-      <mat-option
-        *ngFor="let option of filteredOptions | async"
-        [value]="option"
-      >
-        {{ option.name }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
-</form> -->
-<!-- <div mat-dialog-actions>
-  <button mat-stroked-button mat-button>Cancel</button>
-  <button
-    mat-stroked-button
-    mat-button
-    [disabled]="!myControl.valid"
-    (click)="recordMe()"
-  >
-    Assign
-  </button>
 </div> -->
