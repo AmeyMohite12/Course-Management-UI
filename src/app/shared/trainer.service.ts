@@ -74,19 +74,21 @@ export class TrainerService {
   }
 
   assignCourse(id: number) {
-    console.log(
-      "url",
-      "http://localhost:8080/trainer_course/post/" +
-        this.currentTrainer +
-        "/" +
-        id
-    );
     return this.http.post(
       "http://localhost:8080/trainer_course/post/" +
         this.currentTrainer +
         "/" +
         id,
       null
+    );
+  }
+
+  unAssignCourse(id: number) {
+    return this.http.delete(
+      "http://localhost:8080/trainer_course/delete/" +
+        this.currentTrainer +
+        "/" +
+        id
     );
   }
 }

@@ -52,6 +52,7 @@ import { TrainerService } from "./shared/trainer.service";
 import { ViewTrainerComponent } from "./trainers/view-trainer/view-trainer.component";
 import { MatSelectModule } from "@angular/material/select";
 import { TrendsComponent } from "./trends/trends.component";
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 
@@ -88,6 +89,7 @@ export function socialConfigs() {
     TrendsComponent,
   ],
   imports: [
+    MatAutocompleteModule,
     NgxChartsModule,
     MatSelectModule,
     MatToolbarModule,

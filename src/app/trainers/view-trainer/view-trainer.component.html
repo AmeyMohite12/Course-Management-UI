@@ -2,11 +2,13 @@
   <tr>
     <td>Id</td>
     <td>Course</td>
+    <td>Unassign</td>
   </tr>
 
   <tr *ngFor="let course of trainerservice.course">
     <td>{{ course.id }}</td>
     <td>{{ course.description }}</td>
+    <td (click)="unAssignCourse(course.id)"><mat-icon>delete</mat-icon></td>
   </tr>
 </table>
 
@@ -31,6 +33,7 @@
         ngModel
       />
     </fieldset>
+
     <fieldset>
       <button
         type="submit"
@@ -44,3 +47,59 @@
     </fieldset>
   </form>
 </div>
+<!-- 
+
+<form class="example-form" [formGroup]>
+  <mat-form-field class="example-full-width">
+    <mat-label>Course Name</mat-label>
+    <input
+      type="text"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option"
+      >
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Assign Course</mat-label>
+    <input
+      type="text"
+      placeholder="Pick one"
+      aria-label="Number"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+      #courseinput
+      required
+      ngModel
+    />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option"
+      >
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form> -->
+<!-- <div mat-dialog-actions>
+  <button mat-stroked-button mat-button>Cancel</button>
+  <button
+    mat-stroked-button
+    mat-button
+    [disabled]="!myControl.valid"
+    (click)="recordMe()"
+  >
+    Assign
+  </button>
+</div> -->
