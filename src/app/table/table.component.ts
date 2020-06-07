@@ -8,6 +8,7 @@ import { HttpClient } from "@angular/common/http";
 import { DataSource } from "@angular/cdk/table";
 import { templateJitUrl } from "@angular/compiler";
 import { map } from "rxjs/operators";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 
 import { TemplateRef } from "@angular/core";
 import { CourseService } from "../shared/course.service";
@@ -16,6 +17,7 @@ import { NgForm } from "@angular/forms";
 import { Course } from "src/app/shared/course.model";
 
 import { ToastrService } from "ngx-toastr";
+import { TableFormComponent } from "../table-form/table-form.component";
 
 @Component({
   selector: "app-table",
@@ -28,7 +30,8 @@ export class TableComponent implements OnInit {
 
     private toastr: ToastrService,
 
-    public courseservice: CourseService
+    public courseservice: CourseService,
+    private dialog: MatDialog
   ) {}
 
   @ViewChild(MatSort) sort: MatSort;
@@ -89,47 +92,77 @@ export class TableComponent implements OnInit {
     }
   }
 
-  updateRecord(form: NgForm) {
-    if (confirm("Are you sure you want to update the existing record ")) {
-      this.courseservice.updateCourse(form.value).subscribe((res) => {
-        this.resetForm(form);
-        this.courseservice.refreshList();
-        this.courseservice.getCourses().subscribe((res) => {
-          this.checkData = res;
-          this.dataSource.data = this.checkData;
-          this.toastr.info("Updated Successfully", "Course");
-        });
-      });
-    }
-  }
-  insertRecord(form: NgForm) {
-    console.log(form.value);
-    if (confirm("Are you sure you want to insert the record ")) {
-      this.courseservice.postCourse(form.value).subscribe((res) => {
-        this.resetForm(form);
-        this.courseservice.refreshList();
-        this.courseservice.getCourses().subscribe((res) => {
-          this.checkData = res;
-          this.dataSource.data = this.checkData;
-          this.toastr.success("Inserted Successfully", "Course");
-        });
-      });
-    }
-  }
+  // updateRecord(form: NgForm) {
+  //   this.courseservice.formData = {
+  //     id: null,
+  //     description: "",
+  //     creator: "",
+  //     skill: "",
+  //     prerequisite: "",
+  //     lastupdated: null,
+  //   };
 
-  onSubmit(form: NgForm) {
-    if (form.value.id == null) {
-      this.insertRecord(form);
-    } else {
-      console.log("In update", form.value.id);
-      this.updateRecord(form);
-    }
-  }
+  //   if (confirm("Are you sure you want to update the existing record ")) {
+  //     this.courseservice.updateCourse(form.value).subscribe((res) => {
+  //       this.resetForm(form);
+  //       this.courseservice.refreshList();
+  //       this.courseservice.getCourses().subscribe((res) => {
+  //         this.checkData = res;
+  //         this.dataSource.data = this.checkData;
+  //         this.toastr.info("Updated Successfully", "Course");
+  //       });
+  //     });
+  //   }
+  // }
+  // insertRecord(form: NgForm) {
+  //   console.log(form.value);
+  //   if (confirm("Are you sure you want to insert the record ")) {
+  //     this.courseservice.postCourse(form.value).subscribe((res) => {
+  //       this.resetForm(form);
+  //       this.courseservice.refreshList();
+  //       this.courseservice.getCourses().subscribe((res) => {
+  //         this.checkData = res;
+  //         this.dataSource.data = this.checkData;
+  //         this.toastr.success("Inserted Successfully", "Course");
+  //       });
+  //     });
+  //   }
+  // }
+
+  // onSubmit(form: NgForm) {
+  //   if (form.value.id == null) {
+  //     this.insertRecord(form);
+  //   } else {
+  //     console.log("In update", form.value.id);
+  //     this.updateRecord(form);
+  //   }
+  // }
 
   populateForm(course: Course) {
     console.log(course);
-
+    this.dialog.open(TableFormComponent, {
+      height: "700px",
+      width: "700px",
+      autoFocus: true,
+    });
     alert("Form has been populated with fields do required changes and submit");
     this.courseservice.formData = Object.assign({}, course);
+  }
+
+  postCourseForm() {
+    this.courseservice.formData = {
+      id: null,
+      description: "",
+      creator: "",
+      skill: "",
+      prerequisite: "",
+      lastupdated: null,
+    };
+
+    this.dialog.open(TableFormComponent, {
+      height: "700px",
+      width: "700px",
+      autoFocus: true,
+    });
   }
 }

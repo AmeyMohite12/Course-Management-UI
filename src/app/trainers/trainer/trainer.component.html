@@ -1,4 +1,9 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+<form
+  #form="ngForm"
+  autocomplete="off"
+  (submit)="onSubmit(form)"
+  class="example-form"
+>
   <input
     type="hidden"
     name="id"
@@ -6,22 +11,23 @@
     class="form-control"
     #id="ngModel"
   />
-
-  <div class="form-group">
-    <label>Name</label>
-    <input
-      name="name"
-      [(ngModel)]="trainerservice.formData.name"
-      class="form-control"
-      #name="ngModel"
-      required
-    />
-    <div class="validation-error" *ngIf="name.invalid && name.touched">
-      This field is required
-    </div>
+  <div>
+    <mat-form-field class="example-width">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        name="name"
+        [(ngModel)]="trainerservice.formData.name"
+        #name="ngModel"
+        required
+      />
+      <mat-error *ngIf="name.invalid && name.touched">
+        Above field is required
+      </mat-error>
+    </mat-form-field>
   </div>
   <div>
-    <mat-form-field required>
+    <mat-form-field required class="example-width">
       <mat-label>Type</mat-label>
       <mat-select [(value)]="selectedType">
         <mat-option value="Internal">Internal</mat-option>
@@ -29,33 +35,37 @@
       </mat-select>
     </mat-form-field>
   </div>
-
-  <div class="form-group">
-    <label>Age</label>
-    <input
-      name="age"
-      [(ngModel)]="trainerservice.formData.age"
-      class="form-control"
-      #age="ngModel"
-      required
-      type="number"
-    />
-    <div class="validation-error" *ngIf="age.invalid && age.touched">
-      This field is required
-    </div>
+  <div>
+    <mat-form-field class="example-width">
+      <mat-label>Age</mat-label>
+      <input
+        matInput
+        name="age"
+        [(ngModel)]="trainerservice.formData.age"
+        class="form-control"
+        #age="ngModel"
+        required
+        type="number"
+      />
+      <mat-error *ngIf="name.invalid && name.touched">
+        Above field is required
+      </mat-error>
+    </mat-form-field>
   </div>
-  <mat-form-field required>
-    <mat-label>Gender</mat-label>
-    <mat-select [(value)]="selectedGender">
-      <mat-option value="Male">Male</mat-option>
-      <mat-option value="Female">Female</mat-option>
-    </mat-select>
-  </mat-form-field>
-
+  <div>
+    <mat-form-field required class="example-width">
+      <mat-label>Gender</mat-label>
+      <mat-select [(value)]="selectedGender">
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   <div>
     <button
       type="submit"
-      class="btn btn-lg btn-block"
+      mat-raised-button
+      color="primary"
       [disabled]="form.invalid || selectedGender === '' || selectedType === ''"
     >
       Submit

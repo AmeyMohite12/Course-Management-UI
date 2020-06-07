@@ -18,8 +18,11 @@ export class TrainerListComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
+  rowData: Trainer[];
   ngOnInit(): void {
-    this.trainerservice.refreshList();
+    this.trainerservice.refreshList().then(() => {
+      this.rowData = this.trainerservice.list;
+    });
   }
 
   populateForm(trainer: Trainer) {

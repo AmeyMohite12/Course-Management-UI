@@ -26,7 +26,7 @@ class MockToastrService {
   success() {}
   warning() {}
 }
-fdescribe("CoursesListComponent", () => {
+describe("CoursesListComponent", () => {
   let component: CoursesListComponent;
   let fixture: ComponentFixture<CoursesListComponent>;
 

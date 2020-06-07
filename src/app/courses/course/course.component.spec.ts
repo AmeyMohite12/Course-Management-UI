@@ -59,7 +59,7 @@ const testFormNull = <NgForm>{
     lastupdated: null,
   },
 };
-fdescribe("CourseComponent", () => {
+describe("CourseComponent", () => {
   let component: CourseComponent;
   let fixture: ComponentFixture<CourseComponent>;
 

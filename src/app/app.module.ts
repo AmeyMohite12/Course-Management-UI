@@ -56,6 +56,9 @@ import { MatAutocompleteModule } from "@angular/material/autocomplete";
 
 import { NgxChartsModule } from "@swimlane/ngx-charts";
 
+import { AgGridModule } from "ag-grid-angular";
+import { TableFormComponent } from "./table-form/table-form.component";
+
 export function socialConfigs() {
   const config = new AuthServiceConfig([
     {
@@ -87,8 +90,11 @@ export function socialConfigs() {
     TrainerListComponent,
     ViewTrainerComponent,
     TrendsComponent,
+    TableFormComponent,
   ],
   imports: [
+    AgGridModule.withComponents([]),
+
     MatAutocompleteModule,
     NgxChartsModule,
     MatSelectModule,
@@ -163,6 +169,7 @@ export function socialConfigs() {
     MaterialFormComponent,
     MaterialVersionComponent,
     ViewTrainerComponent,
+    TableFormComponent,
   ],
 })
 export class AppModule {}

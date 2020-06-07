@@ -1,16 +1,17 @@
 @import "~bootstrap/dist/css/bootstrap.css";
-
+@import "ag-grid-community/dist/styles/ag-grid.css";
+@import "ag-grid-community/dist/styles/ag-theme-blue.css";
 .form-group > input {
   font-weight: bolder;
 }
 .form-group > label {
   font-weight: lighter;
 }
-
+/* 
 button[type="submit"] {
   background-color: #67dfd4;
   color: #fff;
-}
+} */
 .jumbotron {
   background-color: #fff;
   padding-top: 32px;

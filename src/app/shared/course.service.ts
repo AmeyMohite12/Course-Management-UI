@@ -9,7 +9,7 @@ import { GoogleLoginService } from "../shared/google-login.service";
 })
 export class CourseService {
   formData: Course;
-
+  currentCourse: number;
   list: Course[];
   constructor(
     private http: HttpClient,
