@@ -27,7 +27,7 @@ class MockToastrService {
   info() {}
 }
 
-fdescribe("MaterialFormComponent", () => {
+describe("MaterialFormComponent", () => {
   let component: MaterialFormComponent;
   let fixture: ComponentFixture<MaterialFormComponent>;
   let materialservice: MaterialService;
