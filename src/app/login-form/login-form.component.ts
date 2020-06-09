@@ -18,8 +18,6 @@ import {
 } from "angularx-social-login";
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 
-import { Router } from "@angular/router";
-
 @Component({
   selector: "app-login-form",
   templateUrl: "./login-form.component.html",
@@ -30,7 +28,6 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private getService: GetRequestService,
     private googlelogin: GoogleLoginService
   ) {}

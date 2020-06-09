@@ -51,6 +51,7 @@ class MockToastrService {
   info() {}
   success() {}
   warning() {}
+  error() {}
 }
 const testForm = <NgForm>{
   resetForm: () => null,

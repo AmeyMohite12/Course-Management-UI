@@ -70,10 +70,6 @@ fdescribe("TrainerListComponent", () => {
     expect(component.populateForm(Trainerobj));
   });
 
-  // it("check getCourses", () => {
-  //   expect(component.getCourses(2));
-  // });
-
   it("check Delete Record ", () => {
     expect(component.deleteRecord(1));
   });

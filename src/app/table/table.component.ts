@@ -26,8 +26,6 @@ import { TableFormComponent } from "../table-form/table-form.component";
 })
 export class TableComponent implements OnInit {
   constructor(
-    private http: HttpClient,
-
     private toastr: ToastrService,
 
     public courseservice: CourseService,

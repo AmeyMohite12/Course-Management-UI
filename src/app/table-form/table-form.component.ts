@@ -50,7 +50,6 @@ export class TableFormComponent implements OnInit {
         this.courseservice.getCourses().subscribe((res) => {
           this.toastr.success("Inserted Successfully", "Course");
           this.courseservice.refreshList();
-
           this.dialogref.close();
         });
       });
