@@ -18,6 +18,10 @@ export class GoogleLoginService {
 
   superUser: boolean;
 
+  checkStatus() {
+    return this.superUser;
+  }
+
   constructor(private authservice: AuthService, private router: Router) {}
 
   signInWithGoogle(): void {

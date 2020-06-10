@@ -12,13 +12,13 @@ export class GetRequestService {
     private googlelogin: GoogleLoginService
   ) {}
   data: any;
-  getRequest(mail: any) {
-    console.log("in service", mail);
-    if (mail === "example.mail@domain.com") {
-      this.googlelogin.loggedIn = true;
-      this.router.navigate(["user"]);
-    }
-  }
+  // getRequest(mail: any) {
+  //   console.log("in service", mail);
+  //   if (mail === "example.mail@domain.com") {
+  //     this.googlelogin.loggedIn = true;
+  //     this.router.navigate(["user"]);
+  //   }
+  // }
 
   checkEmail(form: any) {
     this.http

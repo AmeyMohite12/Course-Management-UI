@@ -5,6 +5,7 @@ import { Course } from "./course.model";
 import { ConstantPool } from "@angular/compiler";
 import { ToastrComponentlessModule } from "ngx-toastr";
 import { GoogleLoginService } from "../shared/google-login.service";
+
 @Injectable({
   providedIn: "root",
 })
@@ -46,7 +47,7 @@ export class TrainerService {
   }
 
   updateCourse(formData: Trainer) {
-    if (!this.googleloginservice.superUser) {
+    if (!this.googleloginservice.checkStatus()) {
       this.googleloginservice.checkSuperUser();
       return;
     }
@@ -57,7 +58,7 @@ export class TrainerService {
   }
 
   deleteCourse(id: number) {
-    if (!this.googleloginservice.superUser) {
+    if (!this.googleloginservice.checkStatus()) {
       this.googleloginservice.checkSuperUser();
       return;
     }

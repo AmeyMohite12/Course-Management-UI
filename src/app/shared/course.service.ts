@@ -24,7 +24,7 @@ export class CourseService {
   }
 
   updateCourse(formData: Course) {
-    if (!this.googleloginservice.superUser) {
+    if (!this.googleloginservice.checkStatus()) {
       this.googleloginservice.checkSuperUser();
       return;
     }
@@ -35,7 +35,7 @@ export class CourseService {
   }
 
   deleteCourse(id: number) {
-    if (!this.googleloginservice.superUser) {
+    if (!this.googleloginservice.checkStatus()) {
       this.googleloginservice.checkSuperUser();
       return;
     }
