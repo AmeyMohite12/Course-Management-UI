@@ -104,6 +104,26 @@ fdescribe("CourseService", () => {
     // req.flush(data);
   });
 
+  it("check updateCourse with  superuser", () => {
+    const data: Course = {
+      id: 1,
+      description: "String",
+      creator: "String",
+      skill: "String",
+      prerequisite: "String",
+      lastupdated: "String",
+    };
+
+    spyOn(googleservice, "checkStatus").and.returnValue(true);
+    service.updateCourse(data).subscribe((res: Course) => {
+      expect(res.id).toBe(1);
+    });
+
+    const req = httpmock.expectOne("http://localhost:8080/course/update/1");
+    expect(req.request.method).toBe("PUT");
+    req.flush(data);
+  });
+
   it("check refereshList", () => {
     const data: Course = {
       id: 1,
@@ -137,11 +157,13 @@ fdescribe("CourseService", () => {
       lastupdated: "String",
     };
 
-    service.deleteCourse(data.id);
+    service.deleteCourse(data.id).subscribe((res: Course) => {
+      expect(res.id).toBe(1);
+    });
 
-    // const req = httpmock.expectOne("http://localhost:8080/course/delete/1");
-    // expect(req.request.method).toBe("DELETE");
-    // req.flush(data);
+    const req = httpmock.expectOne("http://localhost:8080/course/delete/1");
+    expect(req.request.method).toBe("DELETE");
+    req.flush(data);
 
     httpmock.verify();
   });

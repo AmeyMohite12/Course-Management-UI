@@ -127,21 +127,27 @@ fdescribe("TrainerService", () => {
 
   it("test assignCourse", () => {
     console.log("My current trainer id ", service.currentTrainer);
-    service.assignCourse(1);
+    service.assignCourse(1).subscribe((res: Course) => {
+      expect(res.id).toBe(1);
+    });
 
-    // const req = httpmock.expectOne(
-    //   `http://localhost:8080/trainer_course/post/${trainer.id}/${trainer.id}`
-    // );
-    // expect(req.request.method).toBe("POST");
+    const req = httpmock.expectOne(
+      `http://localhost:8080/trainer_course/post/${trainer.id}/${trainer.id}`
+    );
+    expect(req.request.method).toBe("POST");
+    req.flush(course);
   });
 
   it("test unassignCourse", () => {
     console.log("My current trainer id ", service.currentTrainer);
-    service.unAssignCourse(1);
+    service.unAssignCourse(1).subscribe((res: Course) => {
+      expect(res.id).toBe(1);
+    });
 
-    // const req = httpmock.expectOne(
-    //   `http://localhost:8080/trainer_course/delete/${trainer.id}/${trainer.id}`
-    // );
-    // expect(req.request.method).toBe("DELETE");
+    const req = httpmock.expectOne(
+      `http://localhost:8080/trainer_course/delete/${trainer.id}/${trainer.id}`
+    );
+    expect(req.request.method).toBe("DELETE");
+    req.flush(course);
   });
 });

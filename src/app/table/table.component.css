@@ -1,4 +1,4 @@
-#formContainer {
+/* #formContainer {
   border-top: 2px solid #aaa;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
   width: 750px;
@@ -155,7 +155,7 @@ fieldset {
 
 :-ms-input-placeholder {
   color: #888;
-}
+} */
 
 /* .myinputfield {
   margin-left: 40px;
@@ -170,4 +170,15 @@ fieldset {
   text-align: center;
   margin-bottom: 50px;
   margin-top: 50px;
+}
+.jumbotron {
+  background-image: linear-gradient(
+      rgba(0, 0, 250, 0.25),
+      rgba(125, 250, 250, 0.45)
+    ),
+    url(../../../Sunset.jpg);
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }

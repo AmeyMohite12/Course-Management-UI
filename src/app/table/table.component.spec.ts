@@ -48,7 +48,13 @@ const courseInfo = {
   prerequisite: "String",
   lastupdated: "String",
 };
-
+class MockMatDialog {
+  open() {
+    return {
+      afterClosed: () => of([]),
+    };
+  }
+}
 class MockToastrService {
   error() {}
   warning() {}
@@ -84,11 +90,8 @@ fdescribe("TableComponent", () => {
           useClass: MockToastrService,
         },
         {
-          provide: OverlayContainer,
-          useFactory: () => {
-            overlayContainerElement = document.createElement("div");
-            return { getContainerElement: () => overlayContainerElement };
-          },
+          provide: MatDialog,
+          useClass: MockMatDialog,
         },
       ],
     }).compileComponents();
@@ -112,5 +115,13 @@ fdescribe("TableComponent", () => {
 
   it("DeleteRecord check", () => {
     expect(component.deleteRecord(1));
+  });
+
+  it("test populateForm", () => {
+    component.populateForm(courseInfo);
+  });
+
+  it("test postCourseForm", () => {
+    component.postCourseForm();
   });
 });
