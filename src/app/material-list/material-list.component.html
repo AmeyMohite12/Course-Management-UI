@@ -1,46 +1,47 @@
-<div class="wrapme">
-  <button mat-raised-button (click)="postMaterial()">
-    <mat-icon>add</mat-icon>Add Assignment
-  </button>
-</div>
+<div class="material-list jumbotron">
+  <div class="wrapme">
+    <button mat-raised-button (click)="postMaterial()">
+      <mat-icon>add</mat-icon>Add Assignment
+    </button>
+  </div>
 
-<table class="table table-striped table-bordered table-hover">
-  <thead>
-    <tr>
-      <th>Assignment</th>
-      <th>fileName</th>
-      <th>fileType <mat-icon> insert_drive_file</mat-icon></th>
-      <th>lastupdated</th>
-      <th>Update Assignment</th>
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+        <th>Assignment</th>
+        <th>fileName</th>
+        <th>fileType <mat-icon> insert_drive_file</mat-icon></th>
+        <th>lastupdated</th>
+        <th>Update Assignment</th>
 
-      <th>Version History</th>
-      <th>Created/Updated By</th>
-      <th>Delete</th>
+        <th>Version History</th>
+        <th>Created/Updated By</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tr *ngFor="let material of materialservice.responseData">
+      <td>{{ material.description }}</td>
+      <td>{{ material.fileName }}</td>
+      <td>{{ material.fileType }}</td>
+      <td>{{ material.lastupdated | date: "medium" }}</td>
+
+      <td (click)="updateFile(material.id)">
+        <mat-icon>update</mat-icon>
+      </td>
+      <td (click)="getVersion(material.id)">
+        <mat-icon>track_changes</mat-icon>
+      </td>
+
+      <td (click)="updateFile(material.id)">
+        {{ material.creator }}
+      </td>
+
+      <td (click)="deleteFile(material.id)">
+        <mat-icon>delete</mat-icon>
+      </td>
     </tr>
-  </thead>
-  <tr *ngFor="let material of materialservice.responseData">
-    <td>{{ material.description }}</td>
-    <td>{{ material.fileName }}</td>
-    <td>{{ material.fileType }}</td>
-    <td>{{ material.lastupdated | date: "medium" }}</td>
-
-    <td (click)="updateFile(material.id)">
-      <mat-icon>update</mat-icon>
-    </td>
-    <td (click)="getVersion(material.id)">
-      <mat-icon>track_changes</mat-icon>
-    </td>
-
-    <td (click)="updateFile(material.id)">
-      {{ material.creator }}
-    </td>
-
-    <td (click)="deleteFile(material.id)">
-      <mat-icon>delete</mat-icon>
-    </td>
-  </tr>
-</table>
-
+  </table>
+</div>
 <!-- <table class="table table-hover">
   <thead>
     <tr>

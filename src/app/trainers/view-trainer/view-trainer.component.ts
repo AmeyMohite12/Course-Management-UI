@@ -55,9 +55,12 @@ export class ViewTrainerComponent implements OnInit {
   assignCourse(form: any) {
     this.trainerservice
       .assignCourse(this.myControl.value.id)
-      .subscribe((res) => {
+      .subscribe((res: any) => {
         if (res != null) {
-          this.toastr.warning("Trainer Assigned Successfully", "Trainer");
+          if (res.courseid === -1) {
+            this.toastr.error("Course has already been assigned", "Trainer");
+          } else
+            this.toastr.warning("Trainer Assigned Successfully", "Trainer");
         } else {
           this.toastr.error("Please Enter a valid course-id", "Trainer");
         }

@@ -8,3 +8,13 @@
   position: absolute;
   top: 50%;
 }
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid black;
+}
+
+.jumbotron {
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
+}

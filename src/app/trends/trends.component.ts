@@ -28,7 +28,7 @@ export class TrendsComponent implements OnInit {
   constructor(private trainerservice: TrainerService) {}
 
   onSelect(event) {
-    console.log(event);
+    console.log(event, " I am in constructor ");
   }
 
   ngOnInit(): void {
@@ -36,6 +36,7 @@ export class TrendsComponent implements OnInit {
       console.log("I have returned");
       console.log(res);
       this.single = res as any[];
+      console.log(this.single);
     });
   }
 }
