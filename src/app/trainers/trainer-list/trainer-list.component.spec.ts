@@ -10,6 +10,7 @@ import { MatDialog, MatDialogModule } from "@angular/material/dialog";
 import { resolve } from "dns";
 
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { Course } from "src/app/shared/course.model";
 const Trainerobj = {
   id: 1,
   name: "string",
@@ -22,17 +23,27 @@ class MockTrainerService {
   list: number[];
   formData: Trainer;
   currentTrainer: number;
-
+  course: Course[];
   deleteCourse(id: number) {
     return of([]);
   }
-
-  getTrainerCourse(id: number) {}
 
   refreshList() {
     return new Promise((resolve) => {
       resolve({});
     });
+  }
+  getTrainerCourse(id: number) {
+    return of([
+      {
+        id: 1,
+        description: "h",
+        creator: "String",
+        skill: "String",
+        prerequisite: "String",
+        lastupdated: "String",
+      },
+    ]);
   }
 }
 
@@ -72,5 +83,9 @@ fdescribe("TrainerListComponent", () => {
 
   it("check Delete Record ", () => {
     expect(component.deleteRecord(1));
+  });
+
+  it("check getCourses ", () => {
+    expect(component.getCourses(1));
   });
 });

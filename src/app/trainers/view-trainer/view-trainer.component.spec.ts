@@ -40,6 +40,17 @@ const CourseInfo = {
 };
 
 class MOckTrainerService {
+  course: Course[] = [
+    {
+      id: 1,
+      description: "String",
+      creator: "String",
+      skill: "String",
+      prerequisite: "String",
+      lastupdated: "String",
+    },
+  ];
+
   assignCourse() {
     return of(null);
   }
