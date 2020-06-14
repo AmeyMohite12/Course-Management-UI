@@ -58,6 +58,7 @@ import { NgxChartsModule } from "@swimlane/ngx-charts";
 
 import { AgGridModule } from "ag-grid-angular";
 import { TableFormComponent } from "./table-form/table-form.component";
+import { WelcomePageComponent } from "./welcome-page/welcome-page.component";
 
 export function socialConfigs() {
   const config = new AuthServiceConfig([
@@ -91,6 +92,7 @@ export function socialConfigs() {
     ViewTrainerComponent,
     TrendsComponent,
     TableFormComponent,
+    WelcomePageComponent,
   ],
   imports: [
     AgGridModule.withComponents([]),
@@ -134,6 +136,11 @@ export function socialConfigs() {
       {
         path: "Trends",
         component: TrendsComponent,
+        canActivate: [AuthguardService],
+      },
+      {
+        path: "Welcome",
+        component: WelcomePageComponent,
         canActivate: [AuthguardService],
       },
       {

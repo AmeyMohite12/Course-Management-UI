@@ -3,7 +3,7 @@
     Au
   </div>
   <div class="navbar">
-    <a mat-button *ngIf="googlelogin.loggedIn">
+    <a mat-button *ngIf="googlelogin.loggedIn" routerLink="Welcome">
       Welcome {{ googlelogin.currentUserName }}
     </a>
     <a mat-button routerLink="" *ngIf="!googlelogin.loggedIn">Login</a>
