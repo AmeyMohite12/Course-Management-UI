@@ -23,7 +23,7 @@ export class MaterialFormComponent implements OnInit {
     this.resetForm(null);
   }
 
-  resetForm(form) {
+  resetForm(form: any) {
     console.log("Here");
     if (form != null) {
       form.resetForm();
@@ -42,6 +42,7 @@ export class MaterialFormComponent implements OnInit {
   }
 
   onClose() {
+    this.resetForm(null);
     this.dialogref.close();
   }
   closeBox() {

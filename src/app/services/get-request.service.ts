@@ -34,9 +34,8 @@ export class GetRequestService {
             this.googlelogin.currentUser = this.data.username;
             this.googlelogin.currentUserName = this.data.firstName;
             this.googlelogin.superUser = true;
-            this.router.navigate(["user"]);
+            this.router.navigate(["Welcome"]);
           } else {
-            console.log("i am here");
             this.router.navigate([""]);
           }
         }

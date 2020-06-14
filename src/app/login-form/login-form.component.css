@@ -284,9 +284,12 @@ input[type="password"]:placeholder {
 }
 
 .myimage {
-  height: 40em;
-  background-size: cover;
-  width: auto;
   background-image: url("../../../Road.jpg");
-  background-position: 50% 50%;
+
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
 }

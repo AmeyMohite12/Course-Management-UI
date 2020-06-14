@@ -5,6 +5,7 @@ import { Course } from "./course.model";
 import { ConstantPool } from "@angular/compiler";
 import { ToastrComponentlessModule } from "ngx-toastr";
 import { GoogleLoginService } from "../shared/google-login.service";
+import { Observable, of } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -38,12 +39,13 @@ export class TrainerService {
   }
 
   getTrainerCourse(id: number) {
-    this.http
-      .get("http://localhost:8080/trainer_course/trainer/get/" + id)
-      .subscribe((res) => {
-        console.log(res);
-        this.course = res as Course[];
-      });
+    return this.http.get(
+      "http://localhost:8080/trainer_course/trainer/get/" + id
+    );
+    // .subscribe((res) => {
+    //   console.log(res);
+    //   this.course = res as Course[];
+    // });
   }
 
   updateCourse(formData: Trainer) {

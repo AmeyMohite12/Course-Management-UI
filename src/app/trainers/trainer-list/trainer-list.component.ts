@@ -5,6 +5,7 @@ import { ToastrService } from "ngx-toastr";
 
 import { MatDialog } from "@angular/material/dialog";
 import { ViewTrainerComponent } from "../view-trainer/view-trainer.component";
+import { Course } from "src/app/shared/course.model";
 
 @Component({
   selector: "app-trainer-list",
@@ -40,13 +41,16 @@ export class TrainerListComponent implements OnInit {
   }
 
   getCourses(id: number) {
-    this.trainerservice.getTrainerCourse(id);
-    this.trainerservice.currentTrainer = id;
+    this.trainerservice.getTrainerCourse(id).subscribe((res) => {
+      console.log(res);
+      this.trainerservice.course = res as Course[];
+      this.trainerservice.currentTrainer = id;
 
-    this.dialog.open(ViewTrainerComponent, {
-      height: "900px",
-      width: "900px",
-      autoFocus: false,
+      this.dialog.open(ViewTrainerComponent, {
+        height: "900px",
+        width: "900px",
+        autoFocus: false,
+      });
     });
   }
 }

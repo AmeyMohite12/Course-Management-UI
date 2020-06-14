@@ -1,11 +1,36 @@
 <div class="container">
+  <mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <button
+      class="btn-dialog-close"
+      mat-stroked-button
+      (click)="onClose()"
+      tabIndex="-1"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
   <form
     id="contact"
     autocomplete="off"
     (submit)="submitForm(form1)"
     #form1="ngForm"
   >
-    <h3>Assignment Material Details</h3>
+    <!-- <div class="closebutton">
+      <button
+        class="btn-dialog-close"
+        mat-stroked-button
+        (click)="onClose()"
+        tabIndex="-1"
+      >
+        <mat-icon>clear</mat-icon>
+      </button>
+    </div> -->
+
+    <h3>
+      Assignment Material Details
+    </h3>
+
     <h4>Upload the file</h4>
     <fieldset>
       <input

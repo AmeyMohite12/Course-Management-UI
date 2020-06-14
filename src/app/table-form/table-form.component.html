@@ -1,4 +1,15 @@
 <div class="container">
+  <mat-toolbar>
+    <span class="fill-remaining-space"></span>
+    <button
+      class="btn-dialog-close"
+      mat-stroked-button
+      (click)="onClose()"
+      tabIndex="-1"
+    >
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
   <form
     id="contact"
     #form="ngForm"

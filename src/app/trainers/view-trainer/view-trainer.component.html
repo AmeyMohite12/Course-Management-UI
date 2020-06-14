@@ -11,6 +11,9 @@
     <td (click)="unAssignCourse(course.id)"><mat-icon>delete</mat-icon></td>
   </tr>
 </table>
+<h3 *ngIf="trainerservice.course.length == 0">
+  No Course Assigned Yet
+</h3>
 
 <div class="myassignForm">
   <h1 mat-dialog-title>Assign Course</h1>

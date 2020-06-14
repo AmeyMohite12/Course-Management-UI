@@ -157,3 +157,10 @@ fieldset {
 :-ms-input-placeholder {
   color: #888;
 }
+.fill-remaining-space {
+  width: 310px;
+}
+#contact {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}

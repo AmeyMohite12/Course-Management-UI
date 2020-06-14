@@ -43,6 +43,11 @@ export class TableFormComponent implements OnInit {
       });
     }
   }
+
+  onClose() {
+    this.dialogref.close();
+  }
+
   insertRecord(form: NgForm) {
     console.log(form.value);
     if (confirm("Are you sure you want to insert the record ")) {

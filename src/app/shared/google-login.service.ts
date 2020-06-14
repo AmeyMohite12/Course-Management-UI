@@ -31,7 +31,7 @@ export class GoogleLoginService {
       this.loggedIn = true;
       this.currentUser = this.user.email;
       this.currentUserName = this.user.firstName;
-      this.router.navigate(["/course-table"]);
+      this.router.navigate(["/Welcome"]);
       this.superUser = false;
     });
   }
