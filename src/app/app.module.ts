@@ -60,6 +60,9 @@ import { AgGridModule } from "ag-grid-angular";
 import { TableFormComponent } from "./table-form/table-form.component";
 import { WelcomePageComponent } from "./welcome-page/welcome-page.component";
 
+import { Ng2SearchPipeModule } from "ng2-search-filter";
+import { NgxPaginationModule } from "ngx-pagination";
+
 export function socialConfigs() {
   const config = new AuthServiceConfig([
     {
@@ -95,8 +98,8 @@ export function socialConfigs() {
     WelcomePageComponent,
   ],
   imports: [
-    AgGridModule.withComponents([]),
-
+    NgxPaginationModule,
+    Ng2SearchPipeModule,
     MatAutocompleteModule,
     NgxChartsModule,
     MatSelectModule,

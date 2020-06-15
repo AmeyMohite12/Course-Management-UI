@@ -13,6 +13,12 @@ import { Course } from "src/app/shared/course.model";
   styleUrls: ["./trainer-list.component.css"],
 })
 export class TrainerListComponent implements OnInit {
+  searchTerm: any;
+
+  config: any;
+
+  isLoaded: boolean;
+
   constructor(
     public trainerservice: TrainerService,
     private toastr: ToastrService,
@@ -21,9 +27,19 @@ export class TrainerListComponent implements OnInit {
 
   rowData: Trainer[];
   ngOnInit(): void {
+    this.isLoaded = false;
     this.trainerservice.refreshList().then(() => {
       this.rowData = this.trainerservice.list;
+      this.isLoaded = true;
+      this.config = {
+        itemsPerPage: 5,
+        currentPage: 1,
+        totalItems: this.trainerservice.list.length,
+      };
     });
+  }
+  pageChanged(event) {
+    this.config.currentPage = event;
   }
 
   populateForm(trainer: Trainer) {
