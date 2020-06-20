@@ -40,7 +40,6 @@ export class TrainerComponent implements OnInit {
     if (form.value.id == null) {
       this.insertRecord(form);
     } else {
-      console.log("In update", form.value.id);
       this.updateRecord(form);
     }
   }
@@ -56,7 +55,6 @@ export class TrainerComponent implements OnInit {
   }
 
   insertRecord(form: NgForm) {
-    console.log(form.value);
     if (confirm("Are you sure you want to insert the record ")) {
       this.trainerservice.postCourse(form.value).subscribe((res) => {
         this.toastr.success("Inserted Successfully", "Course Insertion");

@@ -45,6 +45,7 @@ export class MaterialFormComponent implements OnInit {
     this.resetForm(null);
     this.dialogref.close();
   }
+
   closeBox() {
     this.dialogref.close();
   }

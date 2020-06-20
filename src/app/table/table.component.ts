@@ -68,7 +68,6 @@ export class TableComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.dataSource.data, "In after");
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
@@ -90,54 +89,7 @@ export class TableComponent implements OnInit {
     }
   }
 
-  // updateRecord(form: NgForm) {
-  //   this.courseservice.formData = {
-  //     id: null,
-  //     description: "",
-  //     creator: "",
-  //     skill: "",
-  //     prerequisite: "",
-  //     lastupdated: null,
-  //   };
-
-  //   if (confirm("Are you sure you want to update the existing record ")) {
-  //     this.courseservice.updateCourse(form.value).subscribe((res) => {
-  //       this.resetForm(form);
-  //       this.courseservice.refreshList();
-  //       this.courseservice.getCourses().subscribe((res) => {
-  //         this.checkData = res;
-  //         this.dataSource.data = this.checkData;
-  //         this.toastr.info("Updated Successfully", "Course");
-  //       });
-  //     });
-  //   }
-  // }
-  // insertRecord(form: NgForm) {
-  //   console.log(form.value);
-  //   if (confirm("Are you sure you want to insert the record ")) {
-  //     this.courseservice.postCourse(form.value).subscribe((res) => {
-  //       this.resetForm(form);
-  //       this.courseservice.refreshList();
-  //       this.courseservice.getCourses().subscribe((res) => {
-  //         this.checkData = res;
-  //         this.dataSource.data = this.checkData;
-  //         this.toastr.success("Inserted Successfully", "Course");
-  //       });
-  //     });
-  //   }
-  // }
-
-  // onSubmit(form: NgForm) {
-  //   if (form.value.id == null) {
-  //     this.insertRecord(form);
-  //   } else {
-  //     console.log("In update", form.value.id);
-  //     this.updateRecord(form);
-  //   }
-  // }
-
   populateForm(course: Course) {
-    console.log(course);
     this.dialog.open(TableFormComponent, {
       height: "700px",
       width: "700px",

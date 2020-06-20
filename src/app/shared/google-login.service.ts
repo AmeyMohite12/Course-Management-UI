@@ -27,7 +27,6 @@ export class GoogleLoginService {
   signInWithGoogle(): void {
     this.authservice.signIn(GoogleLoginProvider.PROVIDER_ID).then((res) => {
       this.user = res;
-      console.log(this.user);
       this.loggedIn = true;
       this.currentUser = this.user.email;
       this.currentUserName = this.user.firstName;
@@ -37,7 +36,6 @@ export class GoogleLoginService {
   }
 
   logout() {
-    console.log("in logout");
     this.loggedIn = false;
     this.superUser = false;
 

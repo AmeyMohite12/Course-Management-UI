@@ -46,7 +46,6 @@ export class ViewTrainerComponent implements OnInit {
 
   private _filter(name: string): Course[] {
     const filterValue = name.toLowerCase();
-    console.log("name", name);
     return this.courseList.filter(
       (option) => option.description.toLowerCase().indexOf(filterValue) === 0
     );
@@ -70,7 +69,6 @@ export class ViewTrainerComponent implements OnInit {
 
   unAssignCourse(id: number) {
     this.trainerservice.unAssignCourse(id).subscribe((res) => {
-      console.log(id);
       this.toastr.success("Course unassigned Successfully", "Trainer");
       this.dialogref.close();
     });

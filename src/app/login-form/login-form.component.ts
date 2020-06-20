@@ -62,7 +62,6 @@ export class LoginFormComponent implements OnInit {
   }
 
   loginService(form: any) {
-    //console.log(form);
     this.getService.checkEmail(form);
   }
 

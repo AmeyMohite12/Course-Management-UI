@@ -98,10 +98,6 @@ fdescribe("CourseService", () => {
 
     spyOn(googleservice, "checkStatus").and.returnValue(false);
     service.updateCourse(data);
-
-    // const req = httpmock.expectOne("http://localhost:8080/course/update/1");
-    // expect(req.request.method).toBe("PUT");
-    // req.flush(data);
   });
 
   it("check updateCourse with  superuser", () => {

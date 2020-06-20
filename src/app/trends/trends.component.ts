@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-//import { single } from "./data";
 import { TrainerService } from "../shared/trainer.service";
 @Component({
   selector: "app-trends",
@@ -33,10 +32,7 @@ export class TrendsComponent implements OnInit {
 
   ngOnInit(): void {
     this.trainerservice.getTrainerCourseMapping().subscribe((res) => {
-      console.log("I have returned");
-      console.log(res);
       this.single = res as any[];
-      console.log(this.single);
     });
   }
 }

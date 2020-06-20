@@ -77,17 +77,12 @@ fdescribe("MaterialService", () => {
     service.currentId = 1;
 
     service.postForm(1);
-
-    // const req = httpmock.expectOne("http://localhost:8080/file/updateFile");
-    // expect(req.request.method).toBe("POST");
   });
 
   it("DeleteFile with superUser ", () => {
     googleservice.superUser = true;
 
     service.deleteFile(1);
-    // const req = httpmock.expectOne("http://localhost:8080/file/delete/1");
-    // expect(req.request.method).toBe("DELETE");
   });
 
   it("DeleteFile without superUser ", () => {

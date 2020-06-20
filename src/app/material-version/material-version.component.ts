@@ -13,9 +13,7 @@ export class MaterialVersionComponent implements OnInit {
     public dialogref: MatDialogRef<MaterialVersionComponent>
   ) {}
 
-  ngOnInit(): void {
-    //console.log(this.materialservice.currentList, " is here");
-  }
+  ngOnInit(): void {}
 
   downloadFileVersion(url: string) {
     this.materialservice.downloadFileVersion(url);

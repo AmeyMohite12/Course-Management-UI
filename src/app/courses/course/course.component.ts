@@ -39,7 +39,6 @@ export class CourseComponent implements OnInit {
   }
 
   updateRecord(form: NgForm) {
-    /// TO DO: Write proper update function once PUT request is done in spring
     if (confirm("Are you sure you want to update the existing record ")) {
       this.courseservice.updateCourse(form.value).subscribe((res) => {
         this.toastr.info("Updated Successfully", "Course Updation");

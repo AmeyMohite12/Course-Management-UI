@@ -43,7 +43,6 @@ export class TrainerListComponent implements OnInit {
   }
 
   populateForm(trainer: Trainer) {
-    console.log(trainer);
     this.trainerservice.formData = Object.assign({}, trainer);
   }
 
@@ -58,7 +57,6 @@ export class TrainerListComponent implements OnInit {
 
   getCourses(id: number) {
     this.trainerservice.getTrainerCourse(id).subscribe((res) => {
-      console.log(res);
       this.trainerservice.course = res as Course[];
       this.trainerservice.currentTrainer = id;
 

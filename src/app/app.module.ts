@@ -133,7 +133,7 @@ export function socialConfigs() {
       },
       {
         path: "Material",
-        component: MaterialListComponent, /// MaterialLitComponente , MaterialFormComponent
+        component: MaterialListComponent,
         canActivate: [AuthguardService],
       },
       {

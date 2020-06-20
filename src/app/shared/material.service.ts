@@ -21,10 +21,7 @@ import { HttpErrorResponse } from "@angular/common/http";
   providedIn: "root",
 })
 export class MaterialService {
-  // myMaterial: MaterialForm;
-  //  listMaterial: Material[];
   currentList: any[];
-
   //------------------------------
   responseData: ResponseData[];
   responseForm: ResponseForm;
@@ -44,24 +41,6 @@ export class MaterialService {
         this.currentList = res as any[];
       });
   }
-
-  // getMaterial() {
-  //   return this.http
-  //     .get("http://localhost:8080/material/get/")
-  //     .toPromise()
-  //     .then((res) => {
-  //       this.listMaterial = res as Material[];
-  //     });
-  // }
-
-  // postMaterial() {
-  //   console.log("Current user is ", this.googlelogin.currentUser);
-  //   this.myMaterial.creator = this.googlelogin.currentUser;
-  //   return this.http.post(
-  //     "http://localhost:8080/material/post/",
-  //     this.myMaterial
-  //   );
-  // }
 
   getResponseData() {
     return this.http
@@ -83,12 +62,9 @@ export class MaterialService {
     let params = new HttpParams();
 
     var fd = new FormData();
-    console.log("file is ", this.responseForm.file);
     fd.append("file", this.responseForm.file, this.responseForm.file.name);
     fd.append("description", this.responseForm.description);
     fd.append("creator", this.googlelogin.currentUser);
-
-    console.log(fd);
 
     return this.http
       .post("http://localhost:8080/file/uploadFile", fd, {
@@ -112,7 +88,6 @@ export class MaterialService {
       return;
     }
     var fd = new FormData();
-    console.log("file is ", this.responseForm.file);
     fd.append("file", this.responseForm.file, this.responseForm.file.name);
     fd.append("description", this.responseForm.description);
     fd.append("creator", this.googlelogin.currentUser);
@@ -134,7 +109,6 @@ export class MaterialService {
       // Get server-side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    console.log(errorMessage);
     return throwError(errorMessage);
   }
 

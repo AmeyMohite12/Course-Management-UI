@@ -42,10 +42,6 @@ export class TrainerService {
     return this.http.get(
       "http://localhost:8080/trainer_course/trainer/get/" + id
     );
-    // .subscribe((res) => {
-    //   console.log(res);
-    //   this.course = res as Course[];
-    // });
   }
 
   updateCourse(formData: Trainer) {
